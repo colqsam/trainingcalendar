@@ -37,7 +37,7 @@ export default function App() {
   }, [])
 
   const sessions = useMemo(() => (plan ? buildSessions(plan, activities, todayISO) : []), [plan, activities])
-  const weekly = useMemo(() => weeklyVolume(sessions), [sessions])
+  const weekly = useMemo(() => (plan ? weeklyVolume(plan, sessions, activities) : []), [plan, sessions, activities])
   const stats = useMemo(() => adherence(sessions), [sessions])
   const load = useMemo(() => trainingLoad(activities, todayISO), [activities])
   const pace = useMemo(() => paceSeries(sessions), [sessions])
@@ -61,7 +61,8 @@ export default function App() {
   const curSeq = currentSeq(plan, todayISO)
   const curLabel = (plan.find((p) => p.seq === curSeq) || {}).week_label
   const curRuns = sessions.filter((s) => s.seq === curSeq && s.is_run)
-  const curDoneKm = curRuns.reduce((t, s) => t + (s.actual ? s.actual.distance_km : 0), 0)
+  const curWeekVol = weekly.find((w) => w.seq === curSeq)
+  const curDoneKm = curWeekVol ? curWeekVol.actual : 0
   const curPlanKm = curRuns.reduce((t, s) => t + (s.distance_km || 0), 0)
   const curDone = curRuns.filter((s) => s.status === 'done').length
 
@@ -135,7 +136,7 @@ export default function App() {
         </div>
         <div className="kpi">
           <p className="label">Logged distance</p>
-          <div className="val num">{Math.round(sessions.reduce((t, s) => t + (s.actual ? s.actual.distance_km : 0), 0))}<small> km</small></div>
+          <div className="val num">{Math.round(weekly.reduce((t, w) => t + w.actual, 0))}<small> km</small></div>
           <p className="sub">actual run volume so far</p>
         </div>
       </div>

@@ -69,16 +69,31 @@ export function buildSessions(plan, activities, todayISO) {
   });
 }
 
-export function weeklyVolume(sessions) {
-  const byWeek = {};
-  for (const s of sessions) {
-    if (!s.is_run) continue;
-    const w = (byWeek[s.seq] ||= { seq: s.seq, label: s.week_short, phase: s.phase, planned: 0, actual: 0 });
-    w.planned += s.distance_km || 0;
-    w.actual += s.actual ? s.actual.distance_km : 0;
+function weekSpans(plan) {
+  const seqs = [...new Set(plan.map((p) => p.seq))].sort((a, b) => a - b);
+  const starts = seqs.map((sq) => ({ seq: sq, start: plan.filter((p) => p.seq === sq).map((p) => p.date).sort()[0] }));
+  return starts.map((s, i) => ({ seq: s.seq, start: s.start, end: i + 1 < starts.length ? starts[i + 1].start : shiftISO(s.start, 8) }));
+}
+
+// Planned km comes from the plan; actual km counts EVERY run that falls inside
+// the week's date span — including unplanned/extra runs and races, not just runs
+// that happened to land on a scheduled day.
+export function weeklyVolume(plan, sessions, activities) {
+  if (!plan || !plan.length) return [];
+  const spans = weekSpans(plan);
+  const meta = {};
+  for (const s of sessions) meta[s.seq] = { label: s.week_short, phase: s.phase };
+  const planned = {}, actual = {};
+  for (const s of sessions) if (s.is_run) planned[s.seq] = (planned[s.seq] || 0) + (s.distance_km || 0);
+  for (const a of activities || []) {
+    if (a.type !== 'Run') continue;
+    const sp = spans.find((x) => a.date >= x.start && a.date < x.end);
+    if (sp) actual[sp.seq] = (actual[sp.seq] || 0) + a.distance_km;
   }
-  return Object.values(byWeek).sort((a, b) => a.seq - b.seq)
-    .map((w) => ({ week: w.label, seq: w.seq, phase: w.phase, planned: +w.planned.toFixed(1), actual: +w.actual.toFixed(1) }));
+  return spans.filter((sp) => meta[sp.seq]).sort((a, b) => a.seq - b.seq).map((sp) => ({
+    week: meta[sp.seq].label, seq: sp.seq, phase: meta[sp.seq].phase,
+    planned: +(planned[sp.seq] || 0).toFixed(1), actual: +(actual[sp.seq] || 0).toFixed(1),
+  }));
 }
 
 export function adherence(sessions) {
