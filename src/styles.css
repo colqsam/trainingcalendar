@@ -137,3 +137,16 @@ td.num, th.num { font-family: var(--mono); }
   .row .col.pace, .row .pill.inline { display: none; }
   .weekflag { display: none; }
 }
+
+/* Injury-risk gauge + big-stat panels */
+.bigstat { display: flex; align-items: baseline; gap: 10px; }
+.bigstat .v { font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 1; }
+.bigstat .u { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.statline { display: flex; gap: 22px; margin-top: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.statline b { display: block; font-family: var(--mono); font-size: 15px; color: var(--ink); font-weight: 500; }
+.verdict-line { font-size: 13.5px; margin-top: 12px; font-weight: 500; }
+.gauge { position: relative; height: 12px; border-radius: 6px; background: var(--line); margin: 16px 0 6px; }
+.gauge .sweet { position: absolute; top: 0; bottom: 0; background: var(--good-soft); border-left: 2px solid var(--good); border-right: 2px solid var(--good); }
+.gauge .marker { position: absolute; top: -6px; width: 3px; height: 24px; background: var(--ink); border-radius: 2px; transform: translateX(-50%); }
+.gauge-scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--faint); }
+.s-ok { color: var(--good); } .s-caution { color: var(--under); } .s-high { color: var(--over); } .s-detrain { color: var(--muted); } .s-baseline { color: var(--muted); }

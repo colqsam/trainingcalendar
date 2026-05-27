@@ -1,37 +1,46 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,
-  PieChart, Pie, Cell,
+  PieChart, Pie, Cell, ComposedChart, Line, ReferenceLine,
 } from 'recharts'
-import { loadPlan, loadActivities } from './api'
+import { loadPlan, loadActivities, loadDecoupling } from './api'
 import {
-  buildSessions, weeklyVolume, adherence, currentSeq, fmtPace,
+  buildSessions, weeklyVolume, adherence, currentSeq, trainingLoad,
+  projection, paceSeries, fmtPace, fmtClock,
 } from './lib/compare'
 
 const DAY_MONTH = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 const hrText = (t) => (!t ? '—' : t.min ? `${t.min}–${t.max}` : `<${t.max}`)
+const paceTick = (s) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, '0')}`
+const VERDICT_COLOR = { in: '#2e7d52', over: '#c0492b', under: '#b07410' }
+const STATUS_TEXT = {
+  ok: 'In the sweet spot — load is well matched to your recent base.',
+  caution: 'Ramping a little quick — hold steady rather than adding more.',
+  high: 'Load is climbing fast relative to your base — ease off to protect the knee.',
+  detrain: 'Below your recent base — fine for a down week, watch for fitness slipping.',
+  baseline: 'Still building a baseline — not enough recent volume for a reliable ratio yet.',
+}
 
 export default function App() {
   const [plan, setPlan] = useState(null)
   const [activities, setActivities] = useState([])
   const [actError, setActError] = useState(null)
   const [fetchedAt, setFetchedAt] = useState(null)
+  const [deco, setDeco] = useState(null)
   const [sel, setSel] = useState(null)
-
   const todayISO = new Date().toISOString().slice(0, 10)
 
   useEffect(() => {
     loadPlan().then((p) => { setPlan(p); setSel(currentSeq(p, todayISO)) })
-    loadActivities().then((r) => {
-      setActivities(r.activities)
-      if (r.error) setActError(r.error)
-      if (r.fetchedAt) setFetchedAt(r.fetchedAt)
-    })
+    loadActivities().then((r) => { setActivities(r.activities); if (r.error) setActError(r.error); if (r.fetchedAt) setFetchedAt(r.fetchedAt) })
+    loadDecoupling().then((r) => setDeco(r))
   }, [])
 
   const sessions = useMemo(() => (plan ? buildSessions(plan, activities, todayISO) : []), [plan, activities])
   const weekly = useMemo(() => weeklyVolume(sessions), [sessions])
   const stats = useMemo(() => adherence(sessions), [sessions])
+  const load = useMemo(() => trainingLoad(activities, todayISO), [activities])
+  const pace = useMemo(() => paceSeries(sessions), [sessions])
 
   if (!plan) return <div className="wrap"><p style={{ marginTop: 60 }}>Loading plan…</p></div>
 
@@ -43,7 +52,9 @@ export default function App() {
   const totalKm = Math.round(runs.reduce((t, r) => t + (r.distance_km || 0), 0))
   const peakLong = Math.max(...runs.map((r) => r.distance_km || 0))
   const mpSession = plan.find((p) => p.type === 'Pace Run' && p.pace_target)
-  const mp = mpSession ? fmtPace(mpSession.pace_target.min_sec) : null
+  const mpSec = mpSession ? mpSession.pace_target.min_sec : null
+  const mp = mpSec ? fmtPace(mpSec) : null
+  const proj = projection(activities, mpSec, todayISO)
   const planStart = plan[0].date, planEnd = plan[plan.length - 1].date
   const daysToStart = Math.ceil((new Date(planStart) - new Date(todayISO)) / 86400000)
 
@@ -58,13 +69,27 @@ export default function App() {
   const selMeta = selSessions[0] || {}
   const isStepback = selSessions.some((s) => s.stepback)
   const isTaper = selSessions.some((s) => s.taper)
-
   const recentDone = sessions.filter((s) => s.status === 'done').slice(-10).reverse()
+
   const zoneData = [
     { name: 'In zone', value: stats.hrInZone, color: '#2e7d52' },
     { name: 'Ran hot', value: stats.hrOver, color: '#c0492b' },
     { name: 'Very easy', value: stats.hrUnder, color: '#b07410' },
   ].filter((d) => d.value > 0)
+
+  const paceDomain = (() => {
+    if (!pace.length) return [300, 480]
+    const vals = pace.flatMap((d) => [d.band[0], d.band[1], d.actual])
+    return [Math.floor((Math.min(...vals) - 15) / 5) * 5, Math.ceil((Math.max(...vals) + 15) / 5) * 5]
+  })()
+  const renderDot = (props) => {
+    const { cx, cy, payload } = props
+    if (cx == null || cy == null) return null
+    return <circle cx={cx} cy={cy} r={4.5} fill={VERDICT_COLOR[payload.verdict] || '#2e7d52'} stroke="#fcfaf5" strokeWidth={1.5} />
+  }
+
+  const decoRuns = (deco && deco.runs ? deco.runs : []).filter((r) => r.decoupling != null)
+  const decoColor = (d) => (d < 5 ? '#2e7d52' : d < 10 ? '#b07410' : '#c0492b')
 
   return (
     <div className="wrap">
@@ -88,7 +113,7 @@ export default function App() {
 
       {actError && (
         <div className="banner">
-          Showing your plan only — Strava isn’t wired up yet, so there are no actual runs to compare. To connect it: set <code>STRAVA_CLIENT_ID</code> and <code>STRAVA_CLIENT_SECRET</code> in Netlify, visit <a href="/.netlify/functions/strava-auth">/.netlify/functions/strava-auth</a> to authorize, then paste the refresh token into <code>STRAVA_REFRESH_TOKEN</code> and redeploy.
+          Showing your plan only — Strava isn’t wired up yet. Set <code>STRAVA_CLIENT_ID</code> / <code>STRAVA_CLIENT_SECRET</code>, visit <a href="/.netlify/functions/strava-auth">/.netlify/functions/strava-auth</a> to authorize, then set <code>STRAVA_REFRESH_TOKEN</code> and redeploy.
         </div>
       )}
 
@@ -115,6 +140,66 @@ export default function App() {
         </div>
       </div>
 
+      {/* Injury-risk + projection */}
+      <div className="grid-2">
+        <div>
+          <h2 className="sec-h">Injury-risk · training load</h2>
+          <div className="panel">
+            {load.status === 'baseline' ? (
+              <p style={{ color: 'var(--muted)', fontSize: 14, margin: '4px 0 0' }}>{STATUS_TEXT.baseline}</p>
+            ) : (
+              <>
+                <div className="bigstat">
+                  <span className={`v s-${load.status}`}>{load.acwr}</span>
+                  <span className="u">acute : chronic load</span>
+                </div>
+                <div className="gauge">
+                  <div className="sweet" style={{ left: '40%', width: '25%' }} />
+                  <div className="marker" style={{ left: `${Math.min(100, Math.max(0, (load.acwr / 2) * 100))}%` }} />
+                </div>
+                <div className="gauge-scale"><span>0</span><span>0.8</span><span>1.3</span><span>2.0</span></div>
+              </>
+            )}
+            <div className="statline">
+              <span>Last 7 days<b className="num">{load.acute} km</b></span>
+              <span>Chronic (4-wk avg)<b className="num">{load.chronicWeekly} km/wk</b></span>
+              <span>Week-on-week<b className="num" style={{ color: load.ramp > 10 ? 'var(--over)' : 'inherit' }}>{load.ramp == null ? '—' : `${load.ramp > 0 ? '+' : ''}${load.ramp}%`}</b></span>
+            </div>
+            <p className={`verdict-line s-${load.status}`}>{STATUS_TEXT[load.status]}</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="sec-h">Marathon projection</h2>
+          <div className="panel">
+            {proj ? (
+              <>
+                <div className="bigstat">
+                  <span className="v">{fmtClock(proj.projectedSec)}</span>
+                  <span className="u">projected finish</span>
+                </div>
+                <div className="statline">
+                  {proj.goalSec && <span>Goal<b className="num">{fmtClock(proj.goalSec)}</b></span>}
+                  {proj.gapSec != null && (
+                    <span>Gap to goal<b className="num" style={{ color: proj.gapSec <= 0 ? 'var(--good)' : 'var(--over)' }}>
+                      {proj.gapSec <= 0 ? '−' : '+'}{fmtClock(Math.abs(proj.gapSec))}
+                    </b></span>
+                  )}
+                </div>
+                <p className="verdict-line" style={{ color: 'var(--muted)', fontWeight: 400 }}>
+                  Rough Riegel estimate from your fastest recent effort ({proj.fromDist} km, {DAY_MONTH(proj.fromDate)}). It reads conservative during easy base work and drops sharply once marathon-pace sessions begin.
+                </p>
+              </>
+            ) : (
+              <p style={{ color: 'var(--muted)', fontSize: 14, margin: '4px 0 0' }}>
+                No recent run over 5 km to project from yet. Once you log a longer effort this estimates your finish against the {mp ? fmtClock(mpSec * 42.195) : 'goal'} target.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Weekly volume */}
       <div className="block">
         <h2 className="sec-h">Weekly volume — planned vs actual</h2>
         <div className="legend" style={{ flexDirection: 'row', gap: 18, marginBottom: 6 }}>
@@ -138,6 +223,44 @@ export default function App() {
         </div>
       </div>
 
+      {/* Pace vs target */}
+      <div className="block">
+        <h2 className="sec-h">Easy-run pace vs prescribed band</h2>
+        <div className="legend" style={{ flexDirection: 'row', gap: 16, marginBottom: 6 }}>
+          <span className="li" style={{ width: 'auto' }}><span className="sw" style={{ background: '#e4dccd' }} />Target band</span>
+          <span className="li" style={{ width: 'auto' }}><span className="sw" style={{ background: '#2e7d52', borderRadius: '50%' }} />In zone</span>
+          <span className="li" style={{ width: 'auto' }}><span className="sw" style={{ background: '#c0492b', borderRadius: '50%' }} />Ran hot</span>
+          <span className="li" style={{ width: 'auto' }}><span className="sw" style={{ background: '#b07410', borderRadius: '50%' }} />Very easy</span>
+        </div>
+        <p style={{ color: 'var(--muted)', fontSize: 13, margin: '0 0 8px' }}>
+          Dot position shows actual pace against the band; dot colour shows the heart-rate verdict — a fast dot in green means you beat the easy pace but kept HR honest.
+        </p>
+        <div className="panel" style={{ paddingLeft: 6 }}>
+          {pace.length ? (
+            <div style={{ width: '100%', height: 280 }}>
+              <ResponsiveContainer>
+                <ComposedChart data={pace} margin={{ top: 8, right: 10, bottom: 0, left: -6 }}>
+                  <CartesianGrid vertical={false} stroke="#e4dccd" />
+                  <XAxis dataKey="name" tick={{ fontSize: 10, fontFamily: 'IBM Plex Mono', fill: '#837a6d' }} tickLine={false} axisLine={{ stroke: '#d3c9b6' }} />
+                  <YAxis domain={paceDomain} tickFormatter={paceTick} tick={{ fontSize: 11, fontFamily: 'IBM Plex Mono', fill: '#837a6d' }} tickLine={false} axisLine={false} width={48} />
+                  <Tooltip
+                    contentStyle={{ fontFamily: 'IBM Plex Mono', fontSize: 12, border: '1px solid #d3c9b6', borderRadius: 8, background: '#fcfaf5' }}
+                    formatter={(v, n) => (n === 'actual' ? [fmtPace(v), 'actual'] : [`${paceTick(v[0])}–${paceTick(v[1])}`, 'target'])}
+                  />
+                  <Bar dataKey="band" fill="#e4dccd" radius={[3, 3, 3, 3]} maxBarSize={26} />
+                  <Line dataKey="actual" stroke="transparent" isAnimationActive={false} dot={renderDot} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          ) : (
+            <p style={{ color: 'var(--muted)', fontSize: 14, padding: '12px 8px' }}>
+              No completed runs to plot yet. Each run shows up as a dot against its target band — dots below the band mean you ran faster than the easy prescription.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Week navigator + HR zone */}
       <div className="grid-2">
         <div>
           <div className="weeknav">
@@ -155,26 +278,15 @@ export default function App() {
             {selSessions.map((s) => (
               <div key={s.id} className={`row ${s.status === 'support' ? 'support' : ''}`}>
                 <div className="day">{s.weekday}<b>{DAY_MONTH(s.date)}</b></div>
-                <div className="what">
-                  {s.is_run ? `${s.distance_km} km` : s.type}
-                  <div className="ty">{s.is_run ? s.type : 'support'}</div>
-                </div>
+                <div className="what">{s.is_run ? `${s.distance_km} km` : s.type}<div className="ty">{s.is_run ? s.type : 'support'}</div></div>
                 <div className="col pace">
                   {s.is_run ? (
-                    <>
-                      <span className="k">target</span><br />
-                      <span className="v">{s.pace_target ? s.pace_target.display : '—'}</span><br />
-                      <span className="v" style={{ color: 'var(--muted)' }}>{hrText(s.hr_target)} bpm</span>
-                    </>
+                    <><span className="k">target</span><br /><span className="v">{s.pace_target ? s.pace_target.display : '—'}</span><br /><span className="v" style={{ color: 'var(--muted)' }}>{hrText(s.hr_target)} bpm</span></>
                   ) : <span className="v" style={{ color: 'var(--faint)' }}>{hrText(s.hr_target)} bpm</span>}
                 </div>
                 <div className="col">
                   {s.actual ? (
-                    <>
-                      <span className="k">actual{s.actual.count > 1 ? ` ×${s.actual.count}` : ''}</span><br />
-                      <span className="v">{s.actual.distance_km} km · {fmtPace(s.actual.pace_sec_per_km)}</span><br />
-                      <span className={`v hr-${s.hr || 'in'}`}>{s.actual.avg_hr ? <><span className="hrdot" />{s.actual.avg_hr} bpm</> : '—'}</span>
-                    </>
+                    <><span className="k">actual{s.actual.count > 1 ? ` ×${s.actual.count}` : ''}</span><br /><span className="v">{s.actual.distance_km} km · {fmtPace(s.actual.pace_sec_per_km)}</span><br /><span className={`v hr-${s.hr || 'in'}`}>{s.actual.avg_hr ? <><span className="hrdot" />{s.actual.avg_hr} bpm</> : '—'}</span></>
                   ) : <span className="v" style={{ color: 'var(--faint)' }}>—</span>}
                 </div>
                 <span className={`pill ${s.status}`}>{s.status}</span>
@@ -199,30 +311,58 @@ export default function App() {
                   </ResponsiveContainer>
                 </div>
                 <div className="legend">
-                  {zoneData.map((d) => (
-                    <div className="li" key={d.name}><span className="sw" style={{ background: d.color }} />{d.name}<span className="n">{d.value}</span></div>
-                  ))}
+                  {zoneData.map((d) => (<div className="li" key={d.name}><span className="sw" style={{ background: d.color }} />{d.name}<span className="n">{d.value}</span></div>))}
                 </div>
               </>
             ) : (
-              <p style={{ color: 'var(--muted)', fontSize: 14, margin: '8px 0' }}>
-                No completed runs with heart-rate data yet. Once your runs land on plan dates this shows how many hit their prescribed HR band — the truest read on whether your easy days were actually easy.
-              </p>
+              <p style={{ color: 'var(--muted)', fontSize: 14, margin: '8px 0' }}>No completed runs with heart-rate data yet.</p>
             )}
           </div>
         </div>
       </div>
 
+      {/* Aerobic decoupling */}
+      <div className="block">
+        <h2 className="sec-h">Long-run aerobic decoupling</h2>
+        <div className="panel" style={{ paddingLeft: 6 }}>
+          {deco == null ? (
+            <p style={{ color: 'var(--muted)', fontSize: 14, padding: '12px 8px' }}>Analysing your longest recent runs…</p>
+          ) : decoRuns.length ? (
+            <>
+              <p style={{ color: 'var(--muted)', fontSize: 13, margin: '8px 8px 4px' }}>
+                HR drift from first half to second half at the same effort. Under 5% (the dashed line) means your aerobic base held — higher means fatigue, heat, or under-fuelling crept in.
+              </p>
+              <div style={{ width: '100%', height: 250 }}>
+                <ResponsiveContainer>
+                  <BarChart data={decoRuns} margin={{ top: 8, right: 10, bottom: 0, left: -16 }}>
+                    <CartesianGrid vertical={false} stroke="#e4dccd" />
+                    <XAxis dataKey="date" tickFormatter={DAY_MONTH} tick={{ fontSize: 10, fontFamily: 'IBM Plex Mono', fill: '#837a6d' }} tickLine={false} axisLine={{ stroke: '#d3c9b6' }} />
+                    <YAxis unit="%" tick={{ fontSize: 11, fontFamily: 'IBM Plex Mono', fill: '#837a6d' }} tickLine={false} axisLine={false} width={42} />
+                    <Tooltip contentStyle={{ fontFamily: 'IBM Plex Mono', fontSize: 12, border: '1px solid #d3c9b6', borderRadius: 8, background: '#fcfaf5' }} formatter={(v, _n, p) => [`${v}% · ${p.payload.distance_km} km`, 'decoupling']} labelFormatter={DAY_MONTH} />
+                    <ReferenceLine y={5} stroke="#837a6d" strokeDasharray="4 4" />
+                    <Bar dataKey="decoupling" radius={[3, 3, 0, 0]} maxBarSize={36}>
+                      {decoRuns.map((d) => <Cell key={d.id} fill={decoColor(d.decoupling)} />)}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </>
+          ) : (
+            <p style={{ color: 'var(--muted)', fontSize: 14, padding: '12px 8px' }}>
+              No runs with heart-rate streams to analyse yet (needs runs of 5 km+ recorded with a HR strap/watch). Your long runs will show up here as the plan ramps.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Recent completed runs */}
       <div className="block">
         <h2 className="sec-h">Recent completed runs</h2>
         <div className="panel" style={{ padding: '4px 8px' }}>
           {recentDone.length ? (
             <table>
               <thead>
-                <tr>
-                  <th>Date</th><th>Session</th><th className="num">Plan</th><th className="num">Actual</th>
-                  <th className="num">Pace</th><th className="num">HR (target)</th><th>Verdict</th>
-                </tr>
+                <tr><th>Date</th><th>Session</th><th className="num">Plan</th><th className="num">Actual</th><th className="num">Pace</th><th className="num">HR (target)</th><th>Verdict</th></tr>
               </thead>
               <tbody>
                 {recentDone.map((s) => (
@@ -233,25 +373,18 @@ export default function App() {
                     <td className="num">{s.actual.distance_km} km</td>
                     <td className="num">{fmtPace(s.actual.pace_sec_per_km)}</td>
                     <td className={`num hr-${s.hr || 'in'}`}>{s.actual.avg_hr || '—'} <span style={{ color: 'var(--faint)' }}>({hrText(s.hr_target)})</span></td>
-                    <td className={`hr-${s.hr || 'in'}`} style={{ fontWeight: 500 }}>
-                      {s.hr === 'in' ? 'In zone' : s.hr === 'over' ? 'Ran hot' : s.hr === 'under' ? 'Very easy' : '—'}
-                    </td>
+                    <td className={`hr-${s.hr || 'in'}`} style={{ fontWeight: 500 }}>{s.hr === 'in' ? 'In zone' : s.hr === 'over' ? 'Ran hot' : s.hr === 'under' ? 'Very easy' : '—'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p style={{ color: 'var(--muted)', fontSize: 14, padding: '12px 8px' }}>
-              No completed runs in range yet. Runs you log on Strava that fall on plan dates will appear here automatically.
-            </p>
+            <p style={{ color: 'var(--muted)', fontSize: 14, padding: '12px 8px' }}>No completed runs in range yet.</p>
           )}
         </div>
       </div>
 
-      <p className="foot">
-        Plan parsed from your Google Calendar export · actual runs via Strava
-        {fetchedAt ? ` · updated ${new Date(fetchedAt).toLocaleString()}` : ''}
-      </p>
+      <p className="foot">Plan parsed from your Google Calendar export · actual runs via Strava{fetchedAt ? ` · updated ${new Date(fetchedAt).toLocaleString()}` : ''}</p>
     </div>
   )
 }

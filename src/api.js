@@ -17,3 +17,14 @@ export async function loadActivities() {
     return { activities: [], error: { message: String(err) } };
   }
 }
+
+export async function loadDecoupling() {
+  try {
+    const res = await fetch('/.netlify/functions/decoupling');
+    const data = await res.json();
+    if (!res.ok) return { runs: [], error: data };
+    return { runs: data.runs || [] };
+  } catch (err) {
+    return { runs: [], error: { message: String(err) } };
+  }
+}
