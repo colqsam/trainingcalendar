@@ -10,6 +10,7 @@ import {
   crossTrainWeekly, crossTrainTotals, activityLog, extraRuns,
   projectionTimeline, groupType, TYPE_COLOR,
   momentumSeries, courseAdjust, ghostRace, distanceAtTime,
+  briefSignals, localBrief,
 } from './lib/compare'
 
 const DAY_MONTH = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -22,6 +23,61 @@ const STATUS_TEXT = {
   high: 'Load is climbing fast relative to your base — ease off to protect the knee.',
   detrain: 'Below your recent base — fine for a down week, watch for fitness slipping.',
   baseline: 'Still building a baseline — not enough recent volume for a reliable ratio yet.',
+}
+
+// "Read of the week" — connects signals across panels into a plain-language
+// brief. Tries the Claude API for a natural narrative; falls back to the
+// deterministic localBrief so it always says something useful.
+function WeeklyBrief({ signals }) {
+  const [aiLines, setAiLines] = useState(null)
+  const [state, setState] = useState('idle') // idle | loading | done | fallback
+  const fallback = useMemo(() => localBrief(signals), [signals])
+
+  async function generate() {
+    if (!signals) return
+    setState('loading'); setAiLines(null)
+    const prompt = `You are a sharp, calm running coach writing this week's read for an athlete's training dashboard. Use ONLY the data below. Write 3-4 short sentences, plain and direct, no bullet points, no headers, no preamble. Connect signals that relate (e.g. high momentum + high load = caution). The athlete's knee tendinitis is RESOLVED through home rehab and is NOT a current concern — do not raise it as a risk; the real open question is aerobic durability past their longest run so far. Be honest, not cheerleading.
+
+DATA (JSON):
+${JSON.stringify(signals, null, 2)}
+
+Write the read now, as direct prose addressed to the athlete ("you").`
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }),
+      })
+      const data = await res.json()
+      const text = (data.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('\n').trim()
+      if (text) {
+        setAiLines(text.split(/\n+/).filter(Boolean))
+        setState('done')
+      } else { setState('fallback') }
+    } catch {
+      setState('fallback')
+    }
+  }
+
+  const lines = state === 'done' && aiLines ? aiLines : fallback
+  return (
+    <div className="block">
+      <h2 className="sec-h">This week's read</h2>
+      <div className="panel brief-panel">
+        <div className="brief-body">
+          {lines.length ? lines.map((l, i) => <p key={i}>{l}</p>) : <p style={{ color: 'var(--muted)' }}>Log a couple of weeks of runs and the weekly read will appear here.</p>}
+        </div>
+        <div className="brief-foot">
+          <button className="ghost-btn primary" onClick={generate} disabled={state === 'loading' || !signals}>
+            {state === 'loading' ? 'Reading your week…' : state === 'done' ? 'Refresh read' : 'Generate AI read'}
+          </button>
+          <span className="brief-note">
+            {state === 'done' ? 'Written by Claude from your live data.' : state === 'fallback' ? 'AI unavailable — showing the data-driven read.' : 'Tap for a Claude-written narrative, or read the data-driven version above.'}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 // Animated race-day simulation: your projected splits vs an even goal-pace ghost.
@@ -191,6 +247,11 @@ export default function App() {
   const raceProj = raceRow && raceRow.proj ? raceRow : null
   const courseAdj = raceProj ? courseAdjust(raceProj.proj, raceCfg) : null
   const momoColor = (v) => (v >= 70 ? 'var(--good)' : v >= 45 ? 'var(--under)' : 'var(--over)')
+  const decoRunsForBrief = (deco && deco.runs ? deco.runs : []).filter((r) => r.decoupling != null)
+  const signals = briefSignals({
+    plan, sessions, activities, todayISO, load, momentum,
+    decoRuns: decoRunsForBrief, proj, courseAdj, raceCfg, mpSec,
+  })
 
   const zoneData = [
     { name: 'In zone', value: stats.hrInZone, color: '#2e7d52' },
@@ -260,6 +321,8 @@ export default function App() {
           <p className="sub">actual run volume so far</p>
         </div>
       </div>
+
+      <WeeklyBrief signals={signals} />
 
       {/* Momentum */}
       <div className="block">

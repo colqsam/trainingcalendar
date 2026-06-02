@@ -450,3 +450,82 @@ export function distanceAtTime(splits, t, key) {
   }
   return splits[splits.length - 1].km;
 }
+
+// ---- Weekly brief: assemble the signals worth connecting ----
+// Gathers the cross-panel facts a human would otherwise have to assemble by
+// scrolling, into one object — used both for the AI prompt and the local
+// fallback text. Pure data; no judgments baked in here.
+export function briefSignals({ plan, sessions, activities, todayISO, load, momentum, decoRuns, proj, courseAdj, raceCfg, mpSec }) {
+  const curSeq = currentSeq(plan, todayISO);
+  const curMeta = plan.find((p) => p.seq === curSeq) || {};
+  const weekly = weeklyVolume(plan, sessions, activities);
+  const curVol = weekly.find((w) => w.seq === curSeq);
+  const longest = (activities || []).filter((a) => a.type === 'Run').reduce((m, a) => Math.max(m, a.distance_km), 0);
+  const worstDecoup = (decoRuns || []).reduce((m, r) => (r.decoupling != null && r.decoupling > (m?.decoupling ?? -1) ? r : m), null);
+  const extras = extraRuns(sessions, activities).length;
+  const upcoming = sessions
+    .filter((s) => s.is_run && s.date >= todayISO)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 3)
+    .map((s) => ({ date: s.date, type: s.type, km: s.distance_km, weekday: s.weekday }));
+  const nextLong = sessions
+    .filter((s) => s.is_run && s.type === 'Long Run' && s.date >= todayISO)
+    .sort((a, b) => a.date.localeCompare(b.date))[0];
+  const daysToRace = raceCfg ? Math.ceil((new Date(raceCfg.date) - new Date(todayISO)) / 86400000) : null;
+  return {
+    week_label: curMeta.week_label, phase: curMeta.phase, taper: curMeta.taper, stepback: curMeta.stepback,
+    momentum: momentum?.current ?? null, momentum_delta: momentum?.delta ?? null,
+    momentum_parts: momentum?.parts ?? null,
+    acwr: load?.acwr ?? null, load_status: load?.status ?? null,
+    acute_km: load?.acute ?? null, chronic_km: load?.chronicWeekly ?? null, ramp_pct: load?.ramp ?? null,
+    week_done_km: curVol ? curVol.actual : 0, week_planned_km: curVol ? curVol.planned : 0,
+    longest_run_km: +longest.toFixed(1),
+    worst_decoupling: worstDecoup ? { pct: worstDecoup.decoupling, km: worstDecoup.distance_km, date: worstDecoup.date } : null,
+    extra_runs: extras,
+    proj_finish_s: proj?.projectedSec ?? null,
+    adjusted_finish_s: courseAdj?.adjustedSec ?? null,
+    goal_s: mpSec ? Math.round(mpSec * MARATHON_KM) : null,
+    next_sessions: upcoming,
+    next_long_km: nextLong ? nextLong.distance_km : null,
+    days_to_race: daysToRace,
+  };
+}
+
+// Deterministic fallback brief if the AI call is unavailable. Connects the
+// signals plainly; durability past current longest run is framed as the open
+// question (knee is no longer treated as the limiter).
+export function localBrief(s) {
+  if (!s) return [];
+  const out = [];
+  const clk = (x) => (x == null ? null : fmtClock(x));
+  // 1) momentum + load relationship
+  if (s.momentum != null && s.acwr != null) {
+    if (s.momentum >= 75 && s.acwr >= 1.25) {
+      out.push(`Momentum is high (${s.momentum}) with load near the top of your range (${s.acwr}:1) — the classic moment to resist adding miles, since everything feels good right when overreaching is easiest.`);
+    } else if (s.momentum >= 70 && s.load_status === 'ok') {
+      out.push(`Momentum is strong (${s.momentum}) and load sits in the sweet spot (${s.acwr}:1) — you're absorbing the work well. Keep doing exactly this.`);
+    } else if (s.load_status === 'high') {
+      out.push(`Load is running hot (${s.acwr}:1) — ease the next few days even though momentum (${s.momentum}) says you could push.`);
+    } else if (s.momentum != null) {
+      out.push(`Momentum is ${s.momentum}${s.momentum_delta > 1 ? ' and rising' : s.momentum_delta < -1 ? ' and cooling' : ', steady'}, load at ${s.acwr}:1 — a balanced spot.`);
+    }
+  }
+  // 2) durability — the real open question
+  if (s.worst_decoupling && s.worst_decoupling.pct >= 5) {
+    out.push(`Your aerobic durability is the open question: the one long effort tested past 10 km (${s.worst_decoupling.km} km) decoupled to ${s.worst_decoupling.pct}%, above the 5% line. The build's job now is teaching your system to hold pace deep into a long run — distance endurance, not speed, is the thing to earn.`);
+  } else if (s.longest_run_km < 16 && s.next_long_km) {
+    out.push(`Longest run so far is ${s.longest_run_km} km; the plan's long runs climb from here. Build them patiently — back-half durability is what's still unproven, and it's earned one long run at a time.`);
+  }
+  // 3) extra runs, framed neutrally now that the knee is fine
+  if (s.extra_runs >= 10) {
+    out.push(`You've banked ${s.extra_runs} extra runs beyond the schedule — a real consistency habit. With the knee settled through your rehab, that's free aerobic base; just keep the easy ones genuinely easy so they add base rather than fatigue.`);
+  }
+  // 4) projection vs goal
+  if (s.adjusted_finish_s && s.goal_s) {
+    const gap = s.adjusted_finish_s - s.goal_s;
+    out.push(`Conditions-adjusted projection is ${clk(s.adjusted_finish_s)} against your ${clk(s.goal_s)} goal — ${gap <= 0 ? `${clk(Math.abs(gap))} to spare, if the long runs confirm the fitness` : `${clk(gap)} to find, which the build is designed to close`}.`);
+  }
+  // 5) what's next
+  if (s.next_long_km) out.push(`Next key session: a ${s.next_long_km} km long run — the one that matters most for the durability question above.`);
+  return out;
+}
