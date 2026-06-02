@@ -310,3 +310,143 @@ export function projectionTimeline(plan, activities, cfg, todayISO) {
     return row;
   });
 }
+
+// ---- Momentum engine ----
+// One rising/falling score (0–100) blending three signals over a trailing
+// window, computed per training week so we can draw the trend:
+//   consistency   — completed vs scheduled planned runs
+//   efficiency    — meters-per-heartbeat vs your early-build baseline
+//   load health   — how close acute:chronic load sits to the sweet spot
+function metersPerBeat(acts) {
+  const r = acts.filter((a) => a.type === 'Run' && a.avg_hr && a.distance_km > 0 && a.moving_time_s > 0);
+  if (!r.length) return null;
+  let dist = 0, beats = 0;
+  for (const a of r) { dist += a.distance_km * 1000; beats += a.avg_hr * (a.moving_time_s / 60); }
+  return beats > 0 ? dist / beats : null; // meters per heartbeat
+}
+function acwrAsOf(activities, endISO) {
+  const dayKm = {};
+  for (const a of activities) if (a.type === 'Run') dayKm[a.date] = (dayKm[a.date] || 0) + a.distance_km;
+  const win = (start, len) => { let t = 0; for (let i = start; i < start + len; i++) t += dayKm[shiftISO(endISO, -i)] || 0; return t; };
+  const acute = win(0, 7), chronicWk = win(0, 28) / 4;
+  return chronicWk > 0 ? acute / chronicWk : null;
+}
+function loadHealthScore(acwr) {
+  if (acwr == null) return 0.5;
+  if (acwr >= 0.8 && acwr <= 1.3) return 1;
+  if (acwr < 0.8) return Math.max(0, acwr / 0.8);
+  return Math.max(0, 1 - (acwr - 1.3) / 0.7); // 1.3→1, 2.0→0
+}
+export function momentumSeries(plan, sessions, activities, todayISO) {
+  if (!plan || !plan.length) return { points: [], current: null, delta: null, parts: null };
+  const spans = weekSpans(plan);
+  // baseline efficiency from the first 21 days of logged runs
+  const firstRun = activities.filter((a) => a.type === 'Run').map((a) => a.date).sort()[0];
+  let baselineEff = null;
+  if (firstRun) baselineEff = metersPerBeat(activities.filter((a) => a.date < shiftISO(firstRun, -(-21))));
+  const points = [];
+  for (const sp of spans) {
+    if (sp.start > todayISO) break;
+    const endISO = sp.end <= todayISO ? sp.end : todayISO;
+    const winStart = shiftISO(endISO, -21);
+    const winActs = activities.filter((a) => a.date >= winStart && a.date < endISO);
+    const winSessions = sessions.filter((s) => s.is_run && s.date >= winStart && s.date < endISO);
+    const scheduled = winSessions.length;
+    const completed = winSessions.filter((s) => s.status === 'done').length;
+    if (scheduled === 0 && winActs.filter((a) => a.type === 'Run').length === 0) continue;
+    const consistency = scheduled > 0 ? completed / scheduled : 0.6;
+    const eff = metersPerBeat(winActs);
+    let effScore = 0.5;
+    if (eff && baselineEff) effScore = Math.max(0, Math.min(1, 0.5 + (eff / baselineEff - 1) * 5)); // ±10% → 0..1
+    else if (eff && !baselineEff) { baselineEff = eff; effScore = 0.5; }
+    const loadScore = loadHealthScore(acwrAsOf(activities, endISO));
+    const score = Math.round(100 * (0.4 * consistency + 0.35 * effScore + 0.25 * loadScore));
+    points.push({
+      week: sessions.find((s) => s.seq === sp.seq)?.week_short || `#${sp.seq}`,
+      seq: sp.seq, score,
+      consistency: Math.round(consistency * 100),
+      efficiency: Math.round(effScore * 100),
+      load: Math.round(loadScore * 100),
+    });
+  }
+  const current = points.length ? points[points.length - 1] : null;
+  const prev = points.length > 1 ? points[points.length - 2] : null;
+  return {
+    points, current: current ? current.score : null,
+    delta: current && prev ? current.score - prev.score : null,
+    parts: current ? { consistency: current.consistency, efficiency: current.efficiency, load: current.load } : null,
+  };
+}
+
+// ---- Course + weather adjustment to the projection ----
+// Returns how much the real course (elevation) and race-day temperature bend a
+// flat-and-cool baseline finish time. Heat model: minimal penalty near the
+// 10–12°C optimum, rising above it. Elevation: a few seconds per net climb.
+export function courseAdjust(baseSec, race) {
+  if (!race || baseSec == null) return null;
+  const optimum = 11;
+  const temp = race.forecast_temp_c != null ? race.forecast_temp_c : race.normal_temp_c;
+  let heatPct = 0;
+  if (temp != null && temp > optimum) heatPct = Math.min(0.08, Math.pow((temp - optimum) / 10, 1.5) * 0.03);
+  else if (temp != null && temp < -2) heatPct = 0.01; // very cold also costs a little
+  const heatSec = Math.round(baseSec * heatPct);
+  const gain = race.elevation_gain_m || 0;
+  const elevSec = Math.round((gain / 100) * 8); // ~8s per 100 m of net climb over a marathon
+  return {
+    temp, heatSec, elevSec, gain,
+    adjustedSec: Math.round(baseSec + heatSec + elevSec),
+    usingForecast: race.forecast_temp_c != null,
+  };
+}
+
+// ---- Ghost-runner race-day split model ----
+// Builds cumulative time (seconds) at each km for two runners:
+//   ghost — even goal pace the whole way
+//   you   — your projected finish, modelled as a positive split whose back-half
+//           fade scales with your measured aerobic decoupling (the wall ~32 km).
+export function ghostRace(goalSec, projSec, decouplingPct, distanceKm = MARATHON_KM) {
+  const n = Math.ceil(distanceKm);
+  const goalPace = goalSec / distanceKm;
+  // Fade: 0 decoupling → near-even; higher decoupling → bigger late slowdown.
+  const fade = Math.max(0.02, Math.min(0.14, (decouplingPct ?? 6) / 100));
+  // Build a per-km pace multiplier for "you": slightly hot early, fading late.
+  const weights = [];
+  for (let k = 0; k < n; k++) {
+    const frac = k / (n - 1);
+    // negative (faster) early, positive (slower) late, hinge ~0.72 (≈30 km)
+    const shape = frac < 0.72 ? -0.25 * (1 - frac / 0.72) : Math.pow((frac - 0.72) / 0.28, 1.4);
+    weights.push(1 + fade * shape);
+  }
+  const meanW = weights.reduce((a, b) => a + b, 0) / n;
+  const yourAvgPace = (projSec || goalSec) / distanceKm;
+  const youCum = [], ghostCum = [];
+  let yt = 0, gt = 0;
+  for (let k = 0; k < n; k++) {
+    const segKm = k === n - 1 ? distanceKm - (n - 1) : 1;
+    yt += yourAvgPace * (weights[k] / meanW) * segKm;
+    gt += goalPace * segKm;
+    youCum.push({ km: Math.min(k + 1, distanceKm), you: Math.round(yt), ghost: Math.round(gt) });
+    ghostCum.push(gt);
+  }
+  return {
+    splits: youCum,
+    youFinish: Math.round(yt),
+    ghostFinish: Math.round(gt),
+    wallKm: 32,
+    fadePct: +(fade * 100).toFixed(1),
+  };
+}
+// Distance (km) each runner has covered at elapsed time t (seconds) — for animation.
+export function distanceAtTime(splits, t, key) {
+  if (!splits.length) return 0;
+  if (t <= 0) return 0;
+  let prevT = 0, prevKm = 0;
+  for (const s of splits) {
+    if (s[key] >= t) {
+      const frac = (t - prevT) / (s[key] - prevT || 1);
+      return prevKm + frac * (s.km - prevKm);
+    }
+    prevT = s[key]; prevKm = s.km;
+  }
+  return splits[splits.length - 1].km;
+}

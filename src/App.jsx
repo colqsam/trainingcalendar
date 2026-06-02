@@ -1,14 +1,15 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,
   PieChart, Pie, Cell, ComposedChart, Line, Area, ReferenceLine, Legend,
 } from 'recharts'
-import { loadPlan, loadActivities, loadDecoupling, loadProjectionConfig } from './api'
+import { loadPlan, loadActivities, loadDecoupling, loadProjectionConfig, loadRaceConfig } from './api'
 import {
   buildSessions, weeklyVolume, adherence, currentSeq, trainingLoad,
   projection, paceSeries, fmtPace, fmtClock, fmtDuration,
   crossTrainWeekly, crossTrainTotals, activityLog, extraRuns,
   projectionTimeline, groupType, TYPE_COLOR,
+  momentumSeries, courseAdjust, ghostRace, distanceAtTime,
 } from './lib/compare'
 
 const DAY_MONTH = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -23,6 +24,97 @@ const STATUS_TEXT = {
   baseline: 'Still building a baseline — not enough recent volume for a reliable ratio yet.',
 }
 
+// Animated race-day simulation: your projected splits vs an even goal-pace ghost.
+function GhostRunner({ race, goalSec, projSec, decouplingPct }) {
+  const dist = (race && race.distance_km) || 42.195
+  const model = useMemo(() => ghostRace(goalSec, projSec, decouplingPct, dist), [goalSec, projSec, decouplingPct, dist])
+  const [t, setT] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  const [speed, setSpeed] = useState(120) // sim-seconds per real-second
+  const raf = useRef(null)
+  const last = useRef(null)
+  const maxT = Math.max(model.youFinish, model.ghostFinish)
+
+  useEffect(() => {
+    if (!playing) return
+    const step = (ts) => {
+      if (last.current == null) last.current = ts
+      const dt = (ts - last.current) / 1000
+      last.current = ts
+      setT((prev) => {
+        const next = prev + dt * speed
+        if (next >= maxT) { setPlaying(false); return maxT }
+        return next
+      })
+      raf.current = requestAnimationFrame(step)
+    }
+    raf.current = requestAnimationFrame(step)
+    return () => { cancelAnimationFrame(raf.current); last.current = null }
+  }, [playing, speed, maxT])
+
+  const youKm = distanceAtTime(model.splits, t, 'you')
+  const ghostKm = distanceAtTime(model.splits, t, 'ghost')
+  const youDone = youKm >= dist, ghostDone = ghostKm >= dist
+  const W = 100
+  const pct = (km) => (km / dist) * W
+  const gapSec = (() => {
+    // time gap at current leader's position: how far apart on the road, in seconds of ghost pace
+    const lead = Math.max(youKm, ghostKm)
+    const trail = Math.min(youKm, ghostKm)
+    return Math.round(((lead - trail) / dist) * model.ghostFinish)
+  })()
+  const youAhead = youKm >= ghostKm
+
+  const reset = () => { setPlaying(false); setT(0); last.current = null }
+
+  return (
+    <div>
+      <div className="ghost-controls">
+        <button className="ghost-btn primary" onClick={() => { if (t >= maxT) reset(); setPlaying((p) => !p) }}>
+          {playing ? 'Pause' : t > 0 && t < maxT ? 'Resume' : 'Run the race'}
+        </button>
+        <button className="ghost-btn" onClick={reset}>Restart</button>
+        <span style={{ marginLeft: 8, fontSize: 12, color: 'var(--muted)', fontFamily: 'var(--mono)' }}>speed</span>
+        {[60, 120, 300].map((s) => (
+          <span key={s} className={`speed-seg ${speed === s ? 'on' : ''}`} onClick={() => setSpeed(s)}>{s === 60 ? '1×' : s === 120 ? '2×' : '5×'}</span>
+        ))}
+        <input type="range" min="0" max={maxT} value={Math.round(t)} onChange={(e) => { setPlaying(false); setT(Number(e.target.value)) }} style={{ flex: 1, minWidth: 120, accentColor: 'var(--accent)' }} />
+      </div>
+
+      <div className="ghost-readout">
+        <span className="r">Clock<b>{fmtClock(t)}</b></span>
+        <span className="r">You<b style={{ color: 'var(--accent)' }}>{youKm.toFixed(1)} km{youDone ? ' ✓' : ''}</b></span>
+        <span className="r">Goal ghost<b style={{ color: 'var(--muted)' }}>{ghostKm.toFixed(1)} km{ghostDone ? ' ✓' : ''}</b></span>
+        <span className="r">{youAhead ? 'You lead by' : 'Ghost leads by'}<b style={{ color: youAhead ? 'var(--good)' : 'var(--over)' }}>{fmtClock(gapSec)}</b></span>
+      </div>
+
+      <div className="ghost-stage">
+        <svg viewBox="0 0 100 26" width="100%" preserveAspectRatio="none" style={{ display: 'block', height: 90 }}>
+          {/* road */}
+          <rect x="0" y="11" width="100" height="4" fill="var(--line)" rx="2" />
+          {/* wall marker */}
+          <line x1={pct(model.wallKm)} y1="6" x2={pct(model.wallKm)} y2="20" stroke="var(--under)" strokeWidth="0.3" strokeDasharray="0.8 0.8" />
+          {/* finish */}
+          <line x1={W} y1="5" x2={W} y2="21" stroke="var(--good)" strokeWidth="0.4" />
+          {/* ghost dot */}
+          <circle cx={pct(ghostKm)} cy="13" r="1.5" fill="#a89f90" />
+          {/* you dot */}
+          <circle cx={pct(youKm)} cy="13" r="1.9" fill="#e8431b" />
+        </svg>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--faint)', marginTop: 2 }}>
+          <span>0 km</span>
+          <span style={{ color: 'var(--under)' }}>↑ the wall · {model.wallKm} km</span>
+          <span style={{ color: 'var(--good)' }}>{dist.toFixed(1)} km</span>
+        </div>
+      </div>
+
+      <p style={{ color: 'var(--muted)', fontSize: 13, margin: '14px 2px 0' }}>
+        The ghost holds even {fmtClock(goalSec)} goal pace start to finish. You start a touch quicker, then fade through the back third — a {model.fadePct}% positive split scaled from your measured decoupling, with the wall marked at {model.wallKm} km. Projected finishes: <b style={{ color: 'var(--accent)' }}>you {fmtClock(model.youFinish)}</b> vs <b style={{ color: 'var(--muted)' }}>ghost {fmtClock(model.ghostFinish)}</b>. Where the orange dot slips behind is exactly where race-day pacing and fuel matter most.
+      </p>
+    </div>
+  )
+}
+
 export default function App() {
   const [plan, setPlan] = useState(null)
   const [activities, setActivities] = useState([])
@@ -30,6 +122,7 @@ export default function App() {
   const [fetchedAt, setFetchedAt] = useState(null)
   const [deco, setDeco] = useState(null)
   const [projCfg, setProjCfg] = useState(null)
+  const [raceCfg, setRaceCfg] = useState(null)
   const [loadErr, setLoadErr] = useState(null)
   const [sel, setSel] = useState(null)
   const todayISO = new Date().toISOString().slice(0, 10)
@@ -39,6 +132,7 @@ export default function App() {
     loadActivities().then((r) => { setActivities(r.activities); if (r.error) setActError(r.error); if (r.fetchedAt) setFetchedAt(r.fetchedAt) })
     loadDecoupling().then((r) => setDeco(r))
     loadProjectionConfig().then((c) => setProjCfg(c))
+    loadRaceConfig().then((c) => setRaceCfg(c))
   }, [])
 
   const sessions = useMemo(() => (plan ? buildSessions(plan, activities, todayISO) : []), [plan, activities])
@@ -51,6 +145,7 @@ export default function App() {
   const log = useMemo(() => activityLog(sessions, activities, 50), [sessions, activities])
   const extras = useMemo(() => extraRuns(sessions, activities), [sessions, activities])
   const projTimeline = useMemo(() => projectionTimeline(plan, activities, projCfg, todayISO), [plan, activities, projCfg])
+  const momentum = useMemo(() => (plan ? momentumSeries(plan, sessions, activities, todayISO) : { points: [], current: null }), [plan, sessions, activities])
 
   if (!plan) return (
     <div className="wrap">
@@ -94,6 +189,8 @@ export default function App() {
   const recentDone = sessions.filter((s) => s.status === 'done').slice(-10).reverse()
   const raceRow = projTimeline.length ? projTimeline[projTimeline.length - 1] : null
   const raceProj = raceRow && raceRow.proj ? raceRow : null
+  const courseAdj = raceProj ? courseAdjust(raceProj.proj, raceCfg) : null
+  const momoColor = (v) => (v >= 70 ? 'var(--good)' : v >= 45 ? 'var(--under)' : 'var(--over)')
 
   const zoneData = [
     { name: 'In zone', value: stats.hrInZone, color: '#2e7d52' },
@@ -161,6 +258,60 @@ export default function App() {
           <p className="label">Logged distance</p>
           <div className="val num">{Math.round(weekly.reduce((t, w) => t + w.actual, 0))}<small> km</small></div>
           <p className="sub">actual run volume so far</p>
+        </div>
+      </div>
+
+      {/* Momentum */}
+      <div className="block">
+        <h2 className="sec-h">Momentum</h2>
+        <div className="panel">
+          {momentum.current != null ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(220px, 1fr) 1.3fr', gap: 24, alignItems: 'center' }}>
+              <div>
+                <div className="momentum-head">
+                  <span className="momentum-score" style={{ color: momoColor(momentum.current) }}>{momentum.current}</span>
+                  <span className={`momentum-arrow ${momentum.delta > 1 ? 'mo-up' : momentum.delta < -1 ? 'mo-down' : 'mo-flat'}`}>
+                    {momentum.delta == null ? '—' : momentum.delta > 1 ? `▲ +${momentum.delta}` : momentum.delta < -1 ? `▼ ${momentum.delta}` : '▬ steady'}
+                  </span>
+                </div>
+                <p style={{ fontSize: 13, color: 'var(--muted)', margin: '4px 0 0' }}>
+                  out of 100 · {momentum.delta > 1 ? 'trending up' : momentum.delta < -1 ? 'cooling off' : 'holding steady'} vs last week
+                </p>
+                {momentum.parts && (
+                  <div className="mo-bars">
+                    {[['Consistency', momentum.parts.consistency, '#e8431b'], ['Efficiency', momentum.parts.efficiency, '#2e7d52'], ['Load health', momentum.parts.load, '#7f77dd']].map(([lbl, val, c]) => (
+                      <div className="mo-bar-row" key={lbl}>
+                        <span className="lbl">{lbl}</span>
+                        <span className="mo-bar-track"><span className="mo-bar-fill" style={{ width: `${val}%`, background: c }} /></span>
+                        <span className="pct">{val}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div style={{ width: '100%', height: 180 }}>
+                <ResponsiveContainer>
+                  <ComposedChart data={momentum.points} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
+                    <defs>
+                      <linearGradient id="mofill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#e8431b" stopOpacity={0.22} />
+                        <stop offset="100%" stopColor="#e8431b" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid vertical={false} stroke="#e4dccd" />
+                    <XAxis dataKey="week" tick={{ fontSize: 10, fontFamily: 'IBM Plex Mono', fill: '#837a6d' }} interval="preserveStartEnd" tickLine={false} axisLine={{ stroke: '#d3c9b6' }} />
+                    <YAxis domain={[0, 100]} tick={{ fontSize: 10, fontFamily: 'IBM Plex Mono', fill: '#837a6d' }} tickLine={false} axisLine={false} width={34} />
+                    <Tooltip contentStyle={{ fontFamily: 'IBM Plex Mono', fontSize: 12, border: '1px solid #d3c9b6', borderRadius: 8, background: '#fcfaf5' }} formatter={(v) => [v, 'momentum']} />
+                    <Area dataKey="score" stroke="#e8431b" strokeWidth={2.5} fill="url(#mofill)" isAnimationActive={false} />
+                  </ComposedChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          ) : (
+            <p style={{ color: 'var(--muted)', fontSize: 14, margin: '4px 0' }}>
+              Momentum blends consistency, heart-rate efficiency, and load health into one rising/falling score. It appears once you've logged a couple of weeks of runs.
+            </p>
+          )}
         </div>
       </div>
 
@@ -272,6 +423,61 @@ export default function App() {
         <p style={{ color: 'var(--faint)', fontSize: 12, margin: '10px 2px 0' }}>
           Note: Garmin-style estimates run optimistic for the marathon — they reward speed and VO₂max but don't fully price in the late-race fade past 30 km. Treat the band as fitness potential; race-day execution (pacing, fueling, the wall) decides where in it you land. The forward shape is a model you can tune in <code>public/projection.json</code>.
         </p>
+      </div>
+
+      {/* Course + weather model */}
+      {raceProj && raceCfg && courseAdj && (
+        <div className="block">
+          <h2 className="sec-h">Race-day conditions — {raceCfg.name}</h2>
+          <div className="grid-2">
+            <div className="panel">
+              <div className="bigstat">
+                <span className="v">{fmtClock(courseAdj.adjustedSec)}</span>
+                <span className="u">conditions-adjusted finish</span>
+              </div>
+              <div className="statline">
+                <span>Flat &amp; cool baseline<b className="num">{fmtClock(raceProj.proj)}</b></span>
+                <span>{courseAdj.usingForecast ? 'Forecast' : 'Typical'} temp<b className="num">{courseAdj.temp}°C</b></span>
+                <span>Net climb<b className="num">{courseAdj.gain} m</b></span>
+              </div>
+              <p className="verdict-line" style={{ color: 'var(--muted)', fontWeight: 400 }}>
+                {courseAdj.heatSec > 30
+                  ? `Warmth adds about ${fmtClock(courseAdj.heatSec)}; `
+                  : 'Temperature is near the racing optimum, so it costs you almost nothing; '}
+                {courseAdj.elevSec > 30 ? `the climb adds about ${fmtClock(courseAdj.elevSec)}.` : 'the course is flat enough that elevation is a rounding error.'}
+              </p>
+            </div>
+            <div className="panel" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p style={{ fontSize: 13.5, color: 'var(--ink)', margin: '0 0 10px' }}>{raceCfg.course_note}</p>
+              <p style={{ fontSize: 12.5, color: 'var(--muted)', margin: 0 }}>
+                {raceCfg.city} · {new Date(raceCfg.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.
+                Set the real forecast temperature in <code>public/race.json</code> as the day approaches to sharpen this — right now it's using the {raceCfg.forecast_temp_c != null ? 'forecast you entered' : 'typical late-October normal'}.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Ghost runner */}
+      <div className="block">
+        <h2 className="sec-h">Race-day ghost</h2>
+        <p style={{ color: 'var(--muted)', fontSize: 13, margin: '0 0 12px' }}>
+          Watch your projected race unfold against an even goal-pace ghost. Press play and see where you pull ahead — and where the back-half fade lets the ghost reel you back in.
+        </p>
+        <div className="panel">
+          {projCfg ? (
+            <GhostRunner
+              race={raceCfg}
+              goalSec={(projCfg && projCfg.goal_s) || 13500}
+              projSec={courseAdj ? courseAdj.adjustedSec : raceProj ? raceProj.proj : null}
+              decouplingPct={(deco && deco.runs && deco.runs.filter((r) => r.decoupling != null).length)
+                ? deco.runs.filter((r) => r.decoupling != null).reduce((t, r) => t + r.decoupling, 0) / deco.runs.filter((r) => r.decoupling != null).length
+                : null}
+            />
+          ) : (
+            <p style={{ color: 'var(--muted)', fontSize: 14, margin: '4px 0' }}>The race-day ghost appears once projection data loads.</p>
+          )}
+        </div>
       </div>
 
       {/* Weekly volume */}

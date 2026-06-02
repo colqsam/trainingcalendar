@@ -165,3 +165,29 @@ td.num, th.num { font-family: var(--mono); }
 .scroll-log { max-height: 460px; overflow-y: auto; }
 .scroll-log table { margin: 0; }
 .scroll-log thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+
+/* Momentum engine */
+.momentum-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.momentum-score { font-family: var(--display); font-weight: 800; font-size: 52px; line-height: 1; }
+.momentum-arrow { font-family: var(--mono); font-size: 15px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+.mo-up { background: var(--good-soft); color: var(--good); }
+.mo-down { background: var(--over-soft); color: var(--over); }
+.mo-flat { background: var(--paper); color: var(--muted); border: 1px solid var(--line-strong); }
+.mo-bars { display: flex; flex-direction: column; gap: 9px; margin-top: 14px; }
+.mo-bar-row { display: grid; grid-template-columns: 92px 1fr 38px; align-items: center; gap: 10px; font-size: 13px; }
+.mo-bar-row .lbl { color: var(--muted); }
+.mo-bar-track { height: 8px; border-radius: 5px; background: var(--line); overflow: hidden; }
+.mo-bar-fill { height: 100%; border-radius: 5px; }
+.mo-bar-row .pct { font-family: var(--mono); text-align: right; color: var(--ink); }
+
+/* Ghost runner */
+.ghost-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.ghost-btn { font-family: var(--mono); font-size: 13px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 7px 16px; cursor: pointer; }
+.ghost-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ghost-btn:hover { filter: brightness(0.97); }
+.ghost-readout { display: flex; gap: 24px; flex-wrap: wrap; margin: 4px 0 14px; }
+.ghost-readout .r { font-size: 13px; color: var(--muted); }
+.ghost-readout .r b { display: block; font-family: var(--mono); font-size: 20px; color: var(--ink); font-weight: 500; }
+.ghost-stage { position: relative; padding: 8px 4px 4px; }
+.speed-seg { font-family: var(--mono); font-size: 12px; padding: 5px 10px; border-radius: 7px; border: 1px solid var(--line-strong); background: var(--surface); cursor: pointer; color: var(--muted); }
+.speed-seg.on { background: var(--ink); color: var(--surface); border-color: var(--ink); }

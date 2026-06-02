@@ -19,6 +19,16 @@ export async function loadProjectionConfig() {
   }
 }
 
+export async function loadRaceConfig() {
+  try {
+    const res = await fetch('/race.json');
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
+}
+
 export async function loadActivities() {
   try {
     const res = await fetch('/.netlify/functions/activities');
