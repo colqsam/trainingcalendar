@@ -1,0 +1,18 @@
+{
+  "_comment": "Marathon-finish projection config. garmin_history holds the REAL smoothed Garmin race-time predictions (seconds) pulled per base week — these are actual data, not modelled. The forward model projects from the current anchor with decelerating improvement toward an asymptote, plus a small taper freshness bonus in the final two weeks. Tweak the model block to re-shape the forward curve; nothing here is sacred.",
+  "anchor_date": "2026-06-02",
+  "goal_s": 13500,
+  "garmin_history": [
+    { "week_short": "B1", "date": "2026-05-19", "mid_s": 13769, "fast_s": 13273, "slow_s": 14263 },
+    { "week_short": "B2", "date": "2026-05-26", "mid_s": 13671, "fast_s": 13236, "slow_s": 14234 },
+    { "week_short": "B3", "date": "2026-06-02", "mid_s": 13645, "fast_s": 13153, "slow_s": 14136 }
+  ],
+  "model": {
+    "start_s": 13645,
+    "asymptote_s": 12840,
+    "k": 2.2,
+    "taper_bonus_s": 90,
+    "band_base_s": 360,
+    "band_growth_s": 210
+  }
+}

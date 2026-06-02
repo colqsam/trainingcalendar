@@ -1,0 +1,3444 @@
+[
+  {
+    "id": "base1-tue",
+    "date": "2026-05-19",
+    "phase": "Base",
+    "week": 1,
+    "seq": 1,
+    "week_label": "Base 1",
+    "week_short": "B1",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 5.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 390,
+      "max_sec": 420,
+      "display": "6:30–7:00/km"
+    },
+    "hr_target": {
+      "min": null,
+      "max": 140
+    },
+    "title": "Base 1 Tue — 5 km Easy",
+    "note": "Base Week 1 — Rebuilding\n3 runs: Tue 5 km easy, Thu 5 km easy, Sun 8 km long.\nPace: 6:30–7:00/km. HR under 140 bpm.\nMon: easy Peloton or walk. Fri: rest.\nFocus: consistency and keeping the knee happy."
+  },
+  {
+    "id": "base1-thu",
+    "date": "2026-05-21",
+    "phase": "Base",
+    "week": 1,
+    "seq": 1,
+    "week_label": "Base 1",
+    "week_short": "B1",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 5.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 390,
+      "max_sec": 420,
+      "display": "6:30–7:00/km"
+    },
+    "hr_target": {
+      "min": null,
+      "max": 140
+    },
+    "title": "Base 1 Thu — 5 km Easy",
+    "note": "Base Week 1 — Rebuilding\n3 runs: Tue 5 km easy, Thu 5 km easy, Sun 8 km long.\nPace: 6:30–7:00/km. HR under 140 bpm.\nMon: easy Peloton or walk. Fri: rest.\nFocus: consistency and keeping the knee happy."
+  },
+  {
+    "id": "base1-sun",
+    "date": "2026-05-24",
+    "phase": "Base",
+    "week": 1,
+    "seq": 1,
+    "week_label": "Base 1",
+    "week_short": "B1",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 390,
+      "max_sec": 420,
+      "display": "6:30–7:00/km"
+    },
+    "hr_target": {
+      "min": null,
+      "max": 140
+    },
+    "title": "Base 1 Sun — 8 km Long Run",
+    "note": "Base Week 1 — Rebuilding\n3 runs: Tue 5 km easy, Thu 5 km easy, Sun 8 km long.\nPace: 6:30–7:00/km. HR under 140 bpm.\nMon: easy Peloton or walk. Fri: rest.\nFocus: consistency and keeping the knee happy."
+  },
+  {
+    "id": "base2-tue",
+    "date": "2026-05-26",
+    "phase": "Base",
+    "week": 2,
+    "seq": 2,
+    "week_label": "Base 2",
+    "week_short": "B2",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 405,
+      "display": "6:20–6:45/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Base 2 Tue — 6 km Easy",
+    "note": "Base Week 2 — Building\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 5 km easy, Sun 10 km long.\nPace: 6:20–6:45/km. HR 130–145 bpm.\nPractice carrying fuel on Sunday — test your gel/chew strategy."
+  },
+  {
+    "id": "base2-thu",
+    "date": "2026-05-28",
+    "phase": "Base",
+    "week": 2,
+    "seq": 2,
+    "week_label": "Base 2",
+    "week_short": "B2",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 405,
+      "display": "6:20–6:45/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Base 2 Thu — 6 km Easy",
+    "note": "Base Week 2 — Building\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 5 km easy, Sun 10 km long.\nPace: 6:20–6:45/km. HR 130–145 bpm.\nPractice carrying fuel on Sunday — test your gel/chew strategy."
+  },
+  {
+    "id": "base2-sat",
+    "date": "2026-05-30",
+    "phase": "Base",
+    "week": 2,
+    "seq": 2,
+    "week_label": "Base 2",
+    "week_short": "B2",
+    "weekday": "Sat",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 5.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 405,
+      "display": "6:20–6:45/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Base 2 Sat — 5 km Easy",
+    "note": "Base Week 2 — Building\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 5 km easy, Sun 10 km long.\nPace: 6:20–6:45/km. HR 130–145 bpm.\nPractice carrying fuel on Sunday — test your gel/chew strategy."
+  },
+  {
+    "id": "base2-sun",
+    "date": "2026-05-31",
+    "phase": "Base",
+    "week": 2,
+    "seq": 2,
+    "week_label": "Base 2",
+    "week_short": "B2",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 10.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 405,
+      "display": "6:20–6:45/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Base 2 Sun — 10 km Long Run",
+    "note": "Base Week 2 — Building\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 5 km easy, Sun 10 km long.\nPace: 6:20–6:45/km. HR 130–145 bpm.\nPractice carrying fuel on Sunday — test your gel/chew strategy."
+  },
+  {
+    "id": "base3-tue",
+    "date": "2026-06-02",
+    "phase": "Base",
+    "week": 3,
+    "seq": 3,
+    "week_label": "Base 3",
+    "week_short": "B3",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 400,
+      "display": "6:15–6:40/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 3 Tue — 6 km Easy",
+    "note": "Base Week 3 — Consolidate\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 6 km easy, Sun 12 km long.\nPace: 6:15–6:40/km. HR 130–148 bpm.\nFuel on Sunday long run. New shoes should be getting broken in now."
+  },
+  {
+    "id": "base3-thu",
+    "date": "2026-06-04",
+    "phase": "Base",
+    "week": 3,
+    "seq": 3,
+    "week_label": "Base 3",
+    "week_short": "B3",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 400,
+      "display": "6:15–6:40/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 3 Thu — 6 km Easy",
+    "note": "Base Week 3 — Consolidate\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 6 km easy, Sun 12 km long.\nPace: 6:15–6:40/km. HR 130–148 bpm.\nFuel on Sunday long run. New shoes should be getting broken in now."
+  },
+  {
+    "id": "base3-sat",
+    "date": "2026-06-06",
+    "phase": "Base",
+    "week": 3,
+    "seq": 3,
+    "week_label": "Base 3",
+    "week_short": "B3",
+    "weekday": "Sat",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 400,
+      "display": "6:15–6:40/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 3 Sat — 6 km Easy",
+    "note": "Base Week 3 — Consolidate\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 6 km easy, Sun 12 km long.\nPace: 6:15–6:40/km. HR 130–148 bpm.\nFuel on Sunday long run. New shoes should be getting broken in now."
+  },
+  {
+    "id": "base3-sun",
+    "date": "2026-06-07",
+    "phase": "Base",
+    "week": 3,
+    "seq": 3,
+    "week_label": "Base 3",
+    "week_short": "B3",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 12.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 400,
+      "display": "6:15–6:40/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 3 Sun — 12 km Long Run",
+    "note": "Base Week 3 — Consolidate\n4 runs: Tue 6 km easy, Thu 6 km easy, Sat 6 km easy, Sun 12 km long.\nPace: 6:15–6:40/km. HR 130–148 bpm.\nFuel on Sunday long run. New shoes should be getting broken in now."
+  },
+  {
+    "id": "base4-tue",
+    "date": "2026-06-09",
+    "phase": "Base",
+    "week": 4,
+    "seq": 4,
+    "week_label": "Base 4",
+    "week_short": "B4",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 7.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 370,
+      "max_sec": 395,
+      "display": "6:10–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 4 Tue — 7 km Easy",
+    "note": "Base Week 4 — Final Prep (plan starts Jun 15)\n4 runs: Tue 7 km easy, Thu 7 km easy, Sat 6 km easy, Sun 13 km long.\nPace: 6:10–6:35/km. HR 130–148 bpm.\nKnee check: must feel solid before the 18-week plan begins Monday June 15.\nFormal Hal Higdon Intermediate 2 plan starts NEXT MONDAY."
+  },
+  {
+    "id": "base4-thu",
+    "date": "2026-06-11",
+    "phase": "Base",
+    "week": 4,
+    "seq": 4,
+    "week_label": "Base 4",
+    "week_short": "B4",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 7.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 370,
+      "max_sec": 395,
+      "display": "6:10–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 4 Thu — 7 km Easy",
+    "note": "Base Week 4 — Final Prep (plan starts Jun 15)\n4 runs: Tue 7 km easy, Thu 7 km easy, Sat 6 km easy, Sun 13 km long.\nPace: 6:10–6:35/km. HR 130–148 bpm.\nKnee check: must feel solid before the 18-week plan begins Monday June 15.\nFormal Hal Higdon Intermediate 2 plan starts NEXT MONDAY."
+  },
+  {
+    "id": "base4-sat",
+    "date": "2026-06-13",
+    "phase": "Base",
+    "week": 4,
+    "seq": 4,
+    "week_label": "Base 4",
+    "week_short": "B4",
+    "weekday": "Sat",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 370,
+      "max_sec": 395,
+      "display": "6:10–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 4 Sat — 6 km Easy",
+    "note": "Base Week 4 — Final Prep (plan starts Jun 15)\n4 runs: Tue 7 km easy, Thu 7 km easy, Sat 6 km easy, Sun 13 km long.\nPace: 6:10–6:35/km. HR 130–148 bpm.\nKnee check: must feel solid before the 18-week plan begins Monday June 15.\nFormal Hal Higdon Intermediate 2 plan starts NEXT MONDAY."
+  },
+  {
+    "id": "base4-sun",
+    "date": "2026-06-14",
+    "phase": "Base",
+    "week": 4,
+    "seq": 4,
+    "week_label": "Base 4",
+    "week_short": "B4",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 13.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 370,
+      "max_sec": 395,
+      "display": "6:10–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Base 4 Sun — 13 km Long Run",
+    "note": "Base Week 4 — Final Prep (plan starts Jun 15)\n4 runs: Tue 7 km easy, Thu 7 km easy, Sat 6 km easy, Sun 13 km long.\nPace: 6:10–6:35/km. HR 130–148 bpm.\nKnee check: must feel solid before the 18-week plan begins Monday June 15.\nFormal Hal Higdon Intermediate 2 plan starts NEXT MONDAY."
+  },
+  {
+    "id": "wk1-mon",
+    "date": "2026-06-15",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk1 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk1-tue",
+    "date": "2026-06-16",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk1 Tue — 8.0 km Easy",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk1-wed",
+    "date": "2026-06-17",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Wed",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk1 Wed — 8.0 km Easy",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk1-thu",
+    "date": "2026-06-18",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk1 Thu — 8.0 km Easy",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk1-fri",
+    "date": "2026-06-19",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk1 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk1-sat",
+    "date": "2026-06-20",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk1 Sat — 8.0 km Pace Run",
+    "note": "8.0 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk1-sun",
+    "date": "2026-06-21",
+    "phase": "Build",
+    "week": 1,
+    "seq": 5,
+    "week_label": "W1",
+    "week_short": "W1",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk1 Sun — 16.1 km Long Run",
+    "note": "16.1 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk2-mon",
+    "date": "2026-06-22",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk2 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk2-tue",
+    "date": "2026-06-23",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk2 Tue — 8.0 km Easy",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk2-wed",
+    "date": "2026-06-24",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Wed",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk2 Wed — 8.0 km Easy",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk2-thu",
+    "date": "2026-06-25",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk2 Thu — 8.0 km Easy",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk2-fri",
+    "date": "2026-06-26",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk2 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk2-sat",
+    "date": "2026-06-27",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk2 Sat — 9.7 km Pace Run",
+    "note": "9.7 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk2-sun",
+    "date": "2026-06-28",
+    "phase": "Build",
+    "week": 2,
+    "seq": 6,
+    "week_label": "W2",
+    "week_short": "W2",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 17.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk2 Sun — 17.7 km Long Run",
+    "note": "17.7 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk3-mon",
+    "date": "2026-06-29",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk3 Mon — Cross-Train ↓ Stepback",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk3-tue",
+    "date": "2026-06-30",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk3 Tue — 8.0 km Easy ↓ Stepback",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk3-wed",
+    "date": "2026-07-01",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Wed",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk3 Wed — 9.7 km Easy ↓ Stepback",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk3-thu",
+    "date": "2026-07-02",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk3 Thu — 8.0 km Easy ↓ Stepback",
+    "note": "8.0 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk3-fri",
+    "date": "2026-07-03",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk3 Fri — Rest ↓ Stepback",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk3-sat",
+    "date": "2026-07-04",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk3 Sat — 8.0 km Pace Run ↓ Stepback",
+    "note": "8.0 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk3-sun",
+    "date": "2026-07-05",
+    "phase": "Build",
+    "week": 3,
+    "seq": 7,
+    "week_label": "W3",
+    "week_short": "W3",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk3 Sun — 12.9 km Long Run ↓ Stepback",
+    "note": "12.9 km long run (stepback week — controlled effort, stay easy)\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk4-mon",
+    "date": "2026-07-06",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk4 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk4-tue",
+    "date": "2026-07-07",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk4 Tue — 9.7 km Easy",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk4-wed",
+    "date": "2026-07-08",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Wed",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk4 Wed — 9.7 km Easy",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk4-thu",
+    "date": "2026-07-09",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk4 Thu — 9.7 km Easy",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk4-fri",
+    "date": "2026-07-10",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk4 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk4-sat",
+    "date": "2026-07-11",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk4 Sat — 11.3 km Pace Run",
+    "note": "11.3 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk4-sun",
+    "date": "2026-07-12",
+    "phase": "Build",
+    "week": 4,
+    "seq": 8,
+    "week_label": "W4",
+    "week_short": "W4",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 20.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk4 Sun — 20.9 km Long Run",
+    "note": "20.9 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk5-mon",
+    "date": "2026-07-13",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk5 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk5-tue",
+    "date": "2026-07-14",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk5 Tue — 9.7 km Easy",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk5-wed",
+    "date": "2026-07-15",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Wed",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk5 Wed — 11.3 km Easy",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk5-thu",
+    "date": "2026-07-16",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk5 Thu — 9.7 km Easy",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk5-fri",
+    "date": "2026-07-17",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk5 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk5-sat",
+    "date": "2026-07-18",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk5 Sat — 12.9 km Pace Run",
+    "note": "12.9 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk5-sun",
+    "date": "2026-07-19",
+    "phase": "Build",
+    "week": 5,
+    "seq": 9,
+    "week_label": "W5",
+    "week_short": "W5",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 22.5,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk5 Sun — 22.5 km Long Run",
+    "note": "22.5 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk6-mon",
+    "date": "2026-07-20",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk6 Mon — Cross-Train ↓ Stepback",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk6-tue",
+    "date": "2026-07-21",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk6 Tue — 9.7 km Easy ↓ Stepback",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk6-wed",
+    "date": "2026-07-22",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Wed",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk6 Wed — 9.7 km Easy ↓ Stepback",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk6-thu",
+    "date": "2026-07-23",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk6 Thu — 9.7 km Easy ↓ Stepback",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk6-fri",
+    "date": "2026-07-24",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk6 Fri — Rest ↓ Stepback",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk6-sat",
+    "date": "2026-07-25",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 8.0,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk6 Sat — 8.0 km Pace Run ↓ Stepback",
+    "note": "8.0 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk6-sun",
+    "date": "2026-07-26",
+    "phase": "Build",
+    "week": 6,
+    "seq": 10,
+    "week_label": "W6",
+    "week_short": "W6",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk6 Sun — 16.1 km Long Run ↓ Stepback",
+    "note": "16.1 km long run (stepback week — controlled effort, stay easy)\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk7-mon",
+    "date": "2026-07-27",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk7 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk7-tue",
+    "date": "2026-07-28",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk7 Tue — 11.3 km Easy",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk7-wed",
+    "date": "2026-07-29",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk7 Wed — 11.3 km Medium",
+    "note": "11.3 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk7-thu",
+    "date": "2026-07-30",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk7 Thu — 11.3 km Easy",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk7-fri",
+    "date": "2026-07-31",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk7 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk7-sat",
+    "date": "2026-08-01",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 14.5,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk7 Sat — 14.5 km Pace Run",
+    "note": "14.5 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk7-sun",
+    "date": "2026-08-02",
+    "phase": "Build",
+    "week": 7,
+    "seq": 11,
+    "week_label": "W7",
+    "week_short": "W7",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 25.7,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk7 Sun — 25.7 km Long Run",
+    "note": "25.7 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 19.3 km easy, final 6.4 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk8-mon",
+    "date": "2026-08-03",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk8 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk8-tue",
+    "date": "2026-08-04",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk8 Tue — 11.3 km Easy",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk8-wed",
+    "date": "2026-08-05",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk8 Wed — 12.9 km Medium",
+    "note": "12.9 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk8-thu",
+    "date": "2026-08-06",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk8 Thu — 11.3 km Easy",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk8-fri",
+    "date": "2026-08-07",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk8 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk8-sat",
+    "date": "2026-08-08",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk8 Sat — 16.1 km Pace Run",
+    "note": "16.1 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk8-sun",
+    "date": "2026-08-09",
+    "phase": "Build",
+    "week": 8,
+    "seq": 12,
+    "week_label": "W8",
+    "week_short": "W8",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 27.4,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk8 Sun — 27.4 km Long Run",
+    "note": "27.4 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 20.9 km easy, final 6.4 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk9-mon",
+    "date": "2026-08-10",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk9 Mon — Cross-Train ↓ Stepback",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk9-tue",
+    "date": "2026-08-11",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk9 Tue — 11.3 km Easy ↓ Stepback",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk9-wed",
+    "date": "2026-08-12",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk9 Wed — 11.3 km Medium ↓ Stepback",
+    "note": "11.3 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk9-thu",
+    "date": "2026-08-13",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk9 Thu — 11.3 km Easy ↓ Stepback",
+    "note": "11.3 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk9-fri",
+    "date": "2026-08-14",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk9 Fri — Rest ↓ Stepback",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk9-sat",
+    "date": "2026-08-15",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk9 Sat — 9.7 km Pace Run ↓ Stepback",
+    "note": "9.7 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk9-sun",
+    "date": "2026-08-16",
+    "phase": "Build",
+    "week": 9,
+    "seq": 13,
+    "week_label": "W9",
+    "week_short": "W9",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 20.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk9 Sun — 20.9 km Long Run ↓ Stepback",
+    "note": "20.9 km long run (stepback week — controlled effort, stay easy)\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk10-mon",
+    "date": "2026-08-17",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk10 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk10-tue",
+    "date": "2026-08-18",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk10 Tue — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk10-wed",
+    "date": "2026-08-19",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk10 Wed — 12.9 km Medium",
+    "note": "12.9 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk10-thu",
+    "date": "2026-08-20",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk10 Thu — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk10-fri",
+    "date": "2026-08-21",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk10 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk10-sat",
+    "date": "2026-08-22",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk10 Sat — 16.1 km Pace Run",
+    "note": "16.1 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk10-sun",
+    "date": "2026-08-23",
+    "phase": "Build",
+    "week": 10,
+    "seq": 14,
+    "week_label": "W10",
+    "week_short": "W10",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 29.0,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk10 Sun — 29.0 km Long Run",
+    "note": "29.0 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 22.5 km easy, final 6.4 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk11-mon",
+    "date": "2026-08-24",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk11 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk11-tue",
+    "date": "2026-08-25",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk11 Tue — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk11-wed",
+    "date": "2026-08-26",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 14.5,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk11 Wed — 14.5 km Medium",
+    "note": "14.5 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk11-thu",
+    "date": "2026-08-27",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk11 Thu — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk11-fri",
+    "date": "2026-08-28",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk11 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk11-sat",
+    "date": "2026-08-29",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk11 Sat — 16.1 km Pace Run",
+    "note": "16.1 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk11-sun",
+    "date": "2026-08-30",
+    "phase": "Build",
+    "week": 11,
+    "seq": 15,
+    "week_label": "W11",
+    "week_short": "W11",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 32.2,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk11 Sun — 32.2 km Long Run",
+    "note": "32.2 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 24.1 km easy, final 8.0 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk12-mon",
+    "date": "2026-08-31",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk12 Mon — Cross-Train ↓ Stepback",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk12-tue",
+    "date": "2026-09-01",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk12 Tue — 12.9 km Easy ↓ Stepback",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk12-wed",
+    "date": "2026-09-02",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk12 Wed — 12.9 km Medium ↓ Stepback",
+    "note": "12.9 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk12-thu",
+    "date": "2026-09-03",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk12 Thu — 12.9 km Easy ↓ Stepback",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk12-fri",
+    "date": "2026-09-04",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk12 Fri — Rest ↓ Stepback",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk12-sat",
+    "date": "2026-09-05",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 11.3,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk12 Sat — 11.3 km Pace Run ↓ Stepback",
+    "note": "11.3 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk12-sun",
+    "date": "2026-09-06",
+    "phase": "Build",
+    "week": 12,
+    "seq": 16,
+    "week_label": "W12",
+    "week_short": "W12",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 22.5,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk12 Sun — 22.5 km Long Run ↓ Stepback",
+    "note": "22.5 km long run (stepback week — controlled effort, stay easy)\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk13-mon",
+    "date": "2026-09-07",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk13 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk13-tue",
+    "date": "2026-09-08",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk13 Tue — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk13-wed",
+    "date": "2026-09-09",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 14.5,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk13 Wed — 14.5 km Medium",
+    "note": "14.5 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk13-thu",
+    "date": "2026-09-10",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk13 Thu — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk13-fri",
+    "date": "2026-09-11",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk13 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk13-sat",
+    "date": "2026-09-12",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk13 Sat — 16.1 km Pace Run",
+    "note": "16.1 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk13-sun",
+    "date": "2026-09-13",
+    "phase": "Build",
+    "week": 13,
+    "seq": 17,
+    "week_label": "W13",
+    "week_short": "W13",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 32.2,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk13 Sun — 32.2 km Long Run",
+    "note": "32.2 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 24.1 km easy, final 8.0 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk14-mon",
+    "date": "2026-09-14",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk14 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk14-tue",
+    "date": "2026-09-15",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk14 Tue — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk14-wed",
+    "date": "2026-09-16",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk14 Wed — 16.1 km Medium",
+    "note": "16.1 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk14-thu",
+    "date": "2026-09-17",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk14 Thu — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk14-fri",
+    "date": "2026-09-18",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk14 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk14-sat",
+    "date": "2026-09-19",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk14 Sat — 16.1 km Pace Run",
+    "note": "16.1 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk14-sun",
+    "date": "2026-09-20",
+    "phase": "Build",
+    "week": 14,
+    "seq": 18,
+    "week_label": "W14",
+    "week_short": "W14",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 32.2,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk14 Sun — 32.2 km Long Run",
+    "note": "32.2 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 24.1 km easy, final 8.0 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk15-mon",
+    "date": "2026-09-21",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk15 Mon — Cross-Train ↓ Stepback",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk15-tue",
+    "date": "2026-09-22",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk15 Tue — 12.9 km Easy ↓ Stepback",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk15-wed",
+    "date": "2026-09-23",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk15 Wed — 12.9 km Medium ↓ Stepback",
+    "note": "12.9 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk15-thu",
+    "date": "2026-09-24",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk15 Thu — 12.9 km Easy ↓ Stepback",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk15-fri",
+    "date": "2026-09-25",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": true,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk15 Fri — Rest ↓ Stepback",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk15-sat",
+    "date": "2026-09-26",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk15 Sat — 12.9 km Pace Run ↓ Stepback",
+    "note": "12.9 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk15-sun",
+    "date": "2026-09-27",
+    "phase": "Build",
+    "week": 15,
+    "seq": 19,
+    "week_label": "W15",
+    "week_short": "W15",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 27.4,
+    "taper": false,
+    "stepback": true,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk15 Sun — 27.4 km Long Run ↓ Stepback",
+    "note": "27.4 km long run (stepback week — controlled effort, stay easy)\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk16-mon",
+    "date": "2026-09-28",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk16 Mon — Cross-Train",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk16-tue",
+    "date": "2026-09-29",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk16 Tue — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk16-wed",
+    "date": "2026-09-30",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk16 Wed — 16.1 km Medium",
+    "note": "16.1 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk16-thu",
+    "date": "2026-10-01",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk16 Thu — 12.9 km Easy",
+    "note": "12.9 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk16-fri",
+    "date": "2026-10-02",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": false,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk16 Fri — Rest",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk16-sat",
+    "date": "2026-10-03",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 16.1,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk16 Sat — 16.1 km Pace Run",
+    "note": "16.1 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk16-sun",
+    "date": "2026-10-04",
+    "phase": "Build",
+    "week": 16,
+    "seq": 20,
+    "week_label": "W16",
+    "week_short": "W16",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 32.2,
+    "taper": false,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk16 Sun — 32.2 km Long Run",
+    "note": "32.2 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\n3/1 option (experienced only, max 1 in 3 weekends): First 24.1 km easy, final 8.0 km at 5:45–6:00/km.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk17-mon",
+    "date": "2026-10-05",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": true,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk17 Mon — Cross-Train — Taper",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk17-tue",
+    "date": "2026-10-06",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk17 Tue — 9.7 km Easy — Taper",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk17-wed",
+    "date": "2026-10-07",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 12.9,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk17 Wed — 12.9 km Medium — Taper",
+    "note": "12.9 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk17-thu",
+    "date": "2026-10-08",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk17 Thu — 9.7 km Easy — Taper",
+    "note": "9.7 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk17-fri",
+    "date": "2026-10-09",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": true,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk17 Fri — Rest — Taper",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk17-sat",
+    "date": "2026-10-10",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Sat",
+    "type": "Pace Run",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 320,
+      "max_sec": 320,
+      "display": "5:20/km"
+    },
+    "hr_target": {
+      "min": 148,
+      "max": 158
+    },
+    "title": "Wk17 Sat — 9.7 km Pace Run — Taper",
+    "note": "9.7 km marathon pace run\nPace: 5:20/km (8:35/mi) — your 3:45 goal pace\nHR: 148–158 bpm (Z3 — comfortably hard)\nFeel: Controlled effort, breathing elevated but sustainable. Not a race.\nPurpose: Train your body to feel and lock in marathon pace."
+  },
+  {
+    "id": "wk17-sun",
+    "date": "2026-10-11",
+    "phase": "Build",
+    "week": 17,
+    "seq": 21,
+    "week_label": "W17",
+    "week_short": "W17",
+    "weekday": "Sun",
+    "type": "Long Run",
+    "is_run": true,
+    "distance_km": 19.3,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 380,
+      "max_sec": 410,
+      "display": "6:20–6:50/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 148
+    },
+    "title": "Wk17 Sun — 19.3 km Long Run — Taper",
+    "note": "19.3 km long run\nPace: 6:20–6:50/km (10:10–11:00/mi) — easy, never race pace\nHR: 130–148 bpm (Z2, allow drift to low Z3 late in run)\nFeel: Comfortable conversation pace. Slow down if HR exceeds 155 bpm.\nFuelling: First gel/chew at 45 min, then every 40–45 min. Carry water or plan route with fountains.\nKnee: Back off immediately if patellar tendinitis flares — 3 easy days beats weeks out injured.\nPurpose: Build endurance and time-on-feet. The cornerstone of marathon training."
+  },
+  {
+    "id": "wk18-mon",
+    "date": "2026-10-12",
+    "phase": "Build",
+    "week": 18,
+    "seq": 22,
+    "week_label": "W18",
+    "week_short": "W18",
+    "weekday": "Mon",
+    "type": "Cross-Train",
+    "is_run": false,
+    "distance_km": null,
+    "taper": true,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": {
+      "min": 120,
+      "max": 145
+    },
+    "title": "Wk18 Mon — Cross-Train — Taper",
+    "note": "Cross-training day (45–60 min)\nOptions: Peloton ride, soccer, swimming, easy walking — no running.\nIntensity: Easy to moderate (HR 120–145 bpm). Active recovery, not a hard workout.\nPeloton: Zone 2 ride — resist the urge to go hard the day after your long run.\nSoccer: Fine but treat as cross-train — don't go all out.\nPurpose: Aerobic maintenance without impact stress on the knee."
+  },
+  {
+    "id": "wk18-tue",
+    "date": "2026-10-13",
+    "phase": "Build",
+    "week": 18,
+    "seq": 22,
+    "week_label": "W18",
+    "week_short": "W18",
+    "weekday": "Tue",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.4,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk18 Tue — 6.4 km Easy — Taper",
+    "note": "6.4 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk18-wed",
+    "date": "2026-10-14",
+    "phase": "Build",
+    "week": 18,
+    "seq": 22,
+    "week_label": "W18",
+    "week_short": "W18",
+    "weekday": "Wed",
+    "type": "Medium",
+    "is_run": true,
+    "distance_km": 9.7,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 345,
+      "max_sec": 370,
+      "display": "5:45–6:10/km"
+    },
+    "hr_target": {
+      "min": 140,
+      "max": 152
+    },
+    "title": "Wk18 Wed — 9.7 km Medium — Taper",
+    "note": "9.7 km medium effort run\nPace: 5:45–6:10/km (9:15–9:55/mi)\nHR: 140–152 bpm (Z2–Z3 boundary)\nFeel: Comfortably challenging — not easy, not a tempo. Steady aerobic effort.\nPurpose: Mid-week stimulus to build aerobic capacity without excessive fatigue."
+  },
+  {
+    "id": "wk18-thu",
+    "date": "2026-10-15",
+    "phase": "Build",
+    "week": 18,
+    "seq": 22,
+    "week_label": "W18",
+    "week_short": "W18",
+    "weekday": "Thu",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 6.4,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk18 Thu — 6.4 km Easy — Taper",
+    "note": "6.4 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  },
+  {
+    "id": "wk18-fri",
+    "date": "2026-10-16",
+    "phase": "Build",
+    "week": 18,
+    "seq": 22,
+    "week_label": "W18",
+    "week_short": "W18",
+    "weekday": "Fri",
+    "type": "Rest",
+    "is_run": false,
+    "distance_km": null,
+    "taper": true,
+    "stepback": false,
+    "pace_target": null,
+    "hr_target": null,
+    "title": "Wk18 Fri — Rest — Taper",
+    "note": "Rest day — no running, no intense cross-training.\nLight stretching, walking, or ATG knee work encouraged:\n  - Reverse nordics: 3x8\n  - Tibialis raises: 3x20\n  - Step-downs: 3x10 each leg\nPurpose: Recovery. Fitness adaptations happen on rest days, not run days."
+  },
+  {
+    "id": "wk18-sat",
+    "date": "2026-10-17",
+    "phase": "Build",
+    "week": 18,
+    "seq": 22,
+    "week_label": "W18",
+    "week_short": "W18",
+    "weekday": "Sat",
+    "type": "Easy",
+    "is_run": true,
+    "distance_km": 3.2,
+    "taper": true,
+    "stepback": false,
+    "pace_target": {
+      "min_sec": 375,
+      "max_sec": 395,
+      "display": "6:15–6:35/km"
+    },
+    "hr_target": {
+      "min": 130,
+      "max": 145
+    },
+    "title": "Wk18 Sat — 3.2 km Easy — Taper",
+    "note": "3.2 km easy run\nPace: 6:15–6:35/km (10:00–10:35/mi)\nHR: 130–145 bpm (Z2 — conversational)\nFeel: You should be able to hold a full conversation. If breathing hard, slow down.\nPurpose: Aerobic base building and active recovery."
+  }
+]

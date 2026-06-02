@@ -1,0 +1,312 @@
+// Pure functions that join the plan to actual activities and grade each session.
+// "On target" is judged primarily by heart-rate zone, not pace.
+//
+// The plan has two phases: a 4-week Base block then an 18-week Build block.
+// Every session carries `seq` (a global chronological week index) and
+// `week_label` / `week_short` for display.
+
+export const sum = (arr, f) => arr.reduce((t, x) => t + (f(x) || 0), 0);
+const MARATHON_KM = 42.195;
+
+export function fmtPace(secPerKm) {
+  if (secPerKm == null) return '—';
+  const m = Math.floor(secPerKm / 60);
+  const s = Math.round(secPerKm % 60);
+  return `${m}:${String(s).padStart(2, '0')}/km`;
+}
+export function fmtDuration(sec) {
+  if (!sec) return '—';
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  return h ? `${h}h ${String(m).padStart(2, '0')}m` : `${m} min`;
+}
+export function fmtClock(sec) {
+  if (sec == null) return '—';
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = Math.round(sec % 60);
+  return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+// Shift a YYYY-MM-DD string by N days (noon-UTC anchor avoids tz off-by-one).
+function shiftISO(iso, deltaDays) {
+  const d = new Date(iso + 'T12:00:00Z');
+  d.setUTCDate(d.getUTCDate() + deltaDays);
+  return d.toISOString().slice(0, 10);
+}
+
+function aggregateRuns(acts) {
+  const distance_km = +sum(acts, (a) => a.distance_km).toFixed(2);
+  const moving_time_s = sum(acts, (a) => a.moving_time_s);
+  const withHr = acts.filter((a) => a.avg_hr != null);
+  const avg_hr = withHr.length
+    ? Math.round(sum(withHr, (a) => a.avg_hr * a.moving_time_s) / sum(withHr, (a) => a.moving_time_s))
+    : null;
+  const max_hr = acts.reduce((m, a) => Math.max(m, a.max_hr || 0), 0) || null;
+  return {
+    count: acts.length, distance_km, moving_time_s,
+    pace_sec_per_km: distance_km > 0 ? Math.round(moving_time_s / distance_km) : null,
+    avg_hr, max_hr,
+  };
+}
+function hrVerdict(target, actualHr) {
+  if (!target || actualHr == null) return null;
+  const lo = target.min ?? 0, hi = target.max ?? 999;
+  if (actualHr > hi) return 'over';
+  if (actualHr < lo) return 'under';
+  return 'in';
+}
+
+export function buildSessions(plan, activities, todayISO) {
+  const runsByDate = {};
+  for (const a of activities) if (a.type === 'Run') (runsByDate[a.date] ||= []).push(a);
+  return plan.map((p) => {
+    const acts = p.is_run ? runsByDate[p.date] : null;
+    const actual = acts && acts.length ? aggregateRuns(acts) : null;
+    const past = p.date < todayISO;
+    let status = !p.is_run ? 'support' : actual ? 'done' : past ? 'missed' : 'upcoming';
+    const hr = actual ? hrVerdict(p.hr_target, actual.avg_hr) : null;
+    return { ...p, actual, status, hr };
+  });
+}
+
+function weekSpans(plan) {
+  const seqs = [...new Set(plan.map((p) => p.seq))].sort((a, b) => a - b);
+  const starts = seqs.map((sq) => ({ seq: sq, start: plan.filter((p) => p.seq === sq).map((p) => p.date).sort()[0] }));
+  return starts.map((s, i) => ({ seq: s.seq, start: s.start, end: i + 1 < starts.length ? starts[i + 1].start : shiftISO(s.start, 8) }));
+}
+
+// Planned km comes from the plan; actual km counts EVERY run that falls inside
+// the week's date span — including unplanned/extra runs and races, not just runs
+// that happened to land on a scheduled day.
+export function weeklyVolume(plan, sessions, activities) {
+  if (!plan || !plan.length) return [];
+  const spans = weekSpans(plan);
+  const meta = {};
+  for (const s of sessions) meta[s.seq] = { label: s.week_short, phase: s.phase };
+  const planned = {}, actual = {};
+  for (const s of sessions) if (s.is_run) planned[s.seq] = (planned[s.seq] || 0) + (s.distance_km || 0);
+  for (const a of activities || []) {
+    if (a.type !== 'Run') continue;
+    const sp = spans.find((x) => a.date >= x.start && a.date < x.end);
+    if (sp) actual[sp.seq] = (actual[sp.seq] || 0) + a.distance_km;
+  }
+  return spans.filter((sp) => meta[sp.seq]).sort((a, b) => a.seq - b.seq).map((sp) => ({
+    week: meta[sp.seq].label, seq: sp.seq, phase: meta[sp.seq].phase,
+    planned: +(planned[sp.seq] || 0).toFixed(1), actual: +(actual[sp.seq] || 0).toFixed(1),
+  }));
+}
+
+export function adherence(sessions) {
+  const completed = sessions.filter((s) => s.status === 'done');
+  const missed = sessions.filter((s) => s.status === 'missed').length;
+  const withHr = completed.filter((s) => s.hr);
+  const inZone = withHr.filter((s) => s.hr === 'in').length;
+  return {
+    completed: completed.length, missed,
+    completionRate: completed.length + missed > 0 ? Math.round((100 * completed.length) / (completed.length + missed)) : null,
+    hrInZone: inZone, hrOver: withHr.filter((s) => s.hr === 'over').length, hrUnder: withHr.filter((s) => s.hr === 'under').length,
+    hrRated: withHr.length, zoneRate: withHr.length ? Math.round((100 * inZone) / withHr.length) : null,
+  };
+}
+
+export function currentSeq(plan, todayISO) {
+  const seqs = [...new Set(plan.map((p) => p.seq))].sort((a, b) => a - b);
+  for (const sq of seqs) {
+    const days = plan.filter((p) => p.seq === sq).map((p) => p.date).sort();
+    if (todayISO <= days[days.length - 1]) return sq;
+  }
+  return seqs[seqs.length - 1];
+}
+
+// ---- Injury-risk load (acute:chronic workload ratio + week ramp) ----
+export function trainingLoad(activities, todayISO) {
+  const dayKm = {};
+  for (const a of activities) if (a.type === 'Run') dayKm[a.date] = (dayKm[a.date] || 0) + a.distance_km;
+  const window = (start, len) => { let t = 0; for (let i = start; i < start + len; i++) t += dayKm[shiftISO(todayISO, -i)] || 0; return t; };
+  const acute = window(0, 7);
+  const chronic28 = window(0, 28);
+  const chronicWeekly = chronic28 / 4;
+  const prev7 = window(7, 7);
+  const acwr = chronicWeekly > 0 ? acute / chronicWeekly : null;
+  const ramp = prev7 > 0 ? ((acute - prev7) / prev7) * 100 : null;
+  let status = 'ok';
+  if (chronicWeekly < 5) status = 'baseline';
+  else if (acwr > 1.5) status = 'high';
+  else if (acwr > 1.3) status = 'caution';
+  else if (acwr < 0.8) status = 'detrain';
+  return {
+    acute: +acute.toFixed(1), prev7: +prev7.toFixed(1), chronicWeekly: +chronicWeekly.toFixed(1),
+    acwr: acwr != null ? +acwr.toFixed(2) : null, ramp: ramp != null ? Math.round(ramp) : null, status,
+  };
+}
+
+// ---- Marathon finish projection (Riegel) from best recent effort ----
+export function projection(activities, mpSecPerKm, todayISO) {
+  const cutoff = shiftISO(todayISO, -42);
+  const cand = activities.filter((a) => a.type === 'Run' && a.date >= cutoff && a.distance_km >= 5 && a.moving_time_s > 0);
+  if (!cand.length) return null;
+  let best = null;
+  for (const a of cand) {
+    const proj = a.moving_time_s * Math.pow(MARATHON_KM / a.distance_km, 1.06);
+    if (best == null || proj < best.proj) best = { proj, a };
+  }
+  const goalSec = mpSecPerKm ? mpSecPerKm * MARATHON_KM : null;
+  return {
+    projectedSec: Math.round(best.proj), fromDate: best.a.date, fromDist: best.a.distance_km,
+    goalSec: goalSec ? Math.round(goalSec) : null, gapSec: goalSec ? Math.round(best.proj - goalSec) : null,
+  };
+}
+
+// ---- Pace vs prescribed band, per completed run ----
+export function paceSeries(sessions) {
+  return sessions
+    .filter((s) => s.status === 'done' && s.actual && s.actual.pace_sec_per_km && s.pace_target)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .map((s) => ({
+      name: new Date(s.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      type: s.type, actual: s.actual.pace_sec_per_km,
+      band: [s.pace_target.min_sec, s.pace_target.max_sec], verdict: s.hr || 'in',
+    }));
+}
+
+// ---- Activity-type helpers (cross-training) ----
+// Group Strava's many sport_type values into the buckets we care about.
+const TYPE_GROUP = {
+  Run: 'Run', TrailRun: 'Run', VirtualRun: 'Run',
+  Ride: 'Bike', VirtualRide: 'Bike', MountainBikeRide: 'Bike', GravelRide: 'Bike', EBikeRide: 'Bike',
+  Soccer: 'Soccer', Workout: 'Workout', WeightTraining: 'Strength', Yoga: 'Yoga',
+  Walk: 'Walk', Hike: 'Hike', Swim: 'Swim',
+};
+export function groupType(t) { return TYPE_GROUP[t] || t || 'Other'; }
+
+export const TYPE_COLOR = {
+  Run: '#e8431b', Bike: '#7f77dd', Soccer: '#d8a23a', Yoga: '#4a9b8e',
+  Strength: '#b0606b', Workout: '#8a8378', Walk: '#9b874a', Hike: '#5f8f4a',
+  Swim: '#4a7fb0', Other: '#a89f90',
+};
+
+// Per-week minutes and counts by activity group (for the stacked time chart).
+export function crossTrainWeekly(plan, activities) {
+  if (!plan || !plan.length) return { rows: [], types: [] };
+  const spans = weekSpans(plan);
+  const meta = {};
+  for (const p of plan) meta[p.seq] = p.week_short;
+  const byWeek = {};
+  const typesSeen = new Set();
+  for (const a of activities || []) {
+    const sp = spans.find((x) => a.date >= x.start && a.date < x.end);
+    if (!sp) continue;
+    const g = groupType(a.type);
+    typesSeen.add(g);
+    (byWeek[sp.seq] ||= { seq: sp.seq, week: meta[sp.seq] })[g] =
+      (byWeek[sp.seq][g] || 0) + (a.moving_time_s || 0) / 60;
+  }
+  const rows = spans.filter((sp) => meta[sp.seq] && byWeek[sp.seq])
+    .map((sp) => {
+      const r = { week: meta[sp.seq], seq: sp.seq };
+      for (const t of typesSeen) r[t] = Math.round(byWeek[sp.seq][t] || 0);
+      return r;
+    });
+  const order = ['Run', 'Bike', 'Soccer', 'Yoga', 'Strength', 'Workout', 'Walk', 'Hike', 'Swim', 'Other'];
+  const types = order.filter((t) => typesSeen.has(t));
+  return { rows, types };
+}
+
+// Totals by type over the whole logged history (for summary chips).
+export function crossTrainTotals(activities) {
+  const by = {};
+  for (const a of activities || []) {
+    const g = groupType(a.type);
+    const b = (by[g] ||= { type: g, count: 0, minutes: 0, km: 0 });
+    b.count++; b.minutes += (a.moving_time_s || 0) / 60; b.km += a.distance_km || 0;
+  }
+  return Object.values(by)
+    .map((b) => ({ ...b, minutes: Math.round(b.minutes), km: +b.km.toFixed(1) }))
+    .sort((a, b) => b.minutes - a.minutes);
+}
+
+// Full chronological activity log, newest first, with planned/extra tagging for runs.
+export function activityLog(sessions, activities, limit = 40) {
+  const plannedRunDates = new Set(sessions.filter((s) => s.is_run).map((s) => s.date));
+  return (activities || [])
+    .slice()
+    .sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id)
+    .slice(0, limit)
+    .map((a) => {
+      const g = groupType(a.type);
+      const isRun = g === 'Run';
+      return {
+        id: a.id, date: a.date, group: g, name: a.name,
+        distance_km: a.distance_km, moving_time_s: a.moving_time_s,
+        pace_sec_per_km: a.pace_sec_per_km, avg_hr: a.avg_hr,
+        tag: isRun ? (plannedRunDates.has(a.date) ? 'planned' : 'extra') : null,
+      };
+    });
+}
+
+// Unplanned ("extra") runs: runs on dates with no scheduled run session.
+export function extraRuns(sessions, activities) {
+  const plannedRunDates = new Set(sessions.filter((s) => s.is_run).map((s) => s.date));
+  return (activities || [])
+    .filter((a) => groupType(a.type) === 'Run' && !plannedRunDates.has(a.date))
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// ---- Projection timeline ----
+// Three grounded series across the plan weeks:
+//   garmin  — REAL smoothed Garmin race predictions for weeks we have data for
+//   proj    — forward projection from the current anchor: decelerating
+//             improvement toward an asymptote, with a small taper freshness bump.
+//             Carries a widening fast/slow confidence band.
+//   actual  — live best-Riegel projection from runs logged up to each week.
+// Nothing converges to the goal by construction; the goal is just a reference.
+export function projectionTimeline(plan, activities, cfg, todayISO) {
+  if (!plan || !plan.length || !cfg) return [];
+  const spans = weekSpans(plan);
+  const meta = {};
+  for (const p of plan) meta[p.seq] = { label: p.week_short, phase: p.phase };
+  const hist = {};
+  for (const h of cfg.garmin_history || []) hist[h.week_short] = h;
+
+  const m = cfg.model;
+  const raceDate = spans[spans.length - 1].start;
+  const anchor = new Date(cfg.anchor_date + 'T12:00:00Z');
+  const race = new Date(raceDate + 'T12:00:00Z');
+  const totalDays = Math.max(1, (race - anchor) / 86400000);
+  const taperStartSeq = spans.length - 2; // last two weeks get the freshness bump
+
+  return spans.filter((sp) => meta[sp.seq]).sort((a, b) => a.seq - b.seq).map((sp, i, arr) => {
+    const label = meta[sp.seq].label;
+    const row = { week: label, seq: sp.seq, phase: meta[sp.seq].phase, goal: cfg.goal_s };
+
+    // Real Garmin history where we have it.
+    if (hist[label]) {
+      row.garmin = hist[label].mid_s;
+      row.garminBand = [hist[label].fast_s, hist[label].slow_s];
+    }
+
+    // Forward projection for weeks at/after the anchor.
+    const wkDate = new Date(sp.start + 'T12:00:00Z');
+    if (wkDate >= anchor) {
+      const p = Math.min(1, Math.max(0, (wkDate - anchor) / 86400000 / totalDays));
+      let mid = m.asymptote_s + (m.start_s - m.asymptote_s) * Math.exp(-m.k * p);
+      const idxFromEnd = arr.length - 1 - i;
+      if (idxFromEnd <= 1) mid -= m.taper_bonus_s * (2 - idxFromEnd) / 2; // ramp the bump over the last 2 wks
+      const band = m.band_base_s + m.band_growth_s * p;
+      row.proj = Math.round(mid);
+      row.projBand = [Math.round(mid - band), Math.round(mid + band)];
+    }
+
+    // Live actual from logged runs up to this week's end.
+    if (sp.start <= todayISO) {
+      const upto = activities.filter((a) => a.type === 'Run' && a.date < sp.end && a.distance_km >= 5 && a.moving_time_s > 0);
+      let best = null;
+      for (const a of upto) {
+        const pj = a.moving_time_s * Math.pow(MARATHON_KM / a.distance_km, 1.06);
+        if (best == null || pj < best) best = pj;
+      }
+      if (best != null) row.actual = Math.round(best);
+    }
+    return row;
+  });
+}
