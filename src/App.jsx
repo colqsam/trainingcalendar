@@ -633,7 +633,7 @@ export default function App() {
                     <><span className="k">actual{s.actual.count > 1 ? ` ×${s.actual.count}` : ''}</span><br /><span className="v">{s.actual.distance_km} km · {fmtPace(s.actual.pace_sec_per_km)}</span><br /><span className={`v hr-${s.hr || 'in'}`}>{s.actual.avg_hr ? <><span className="hrdot" />{s.actual.avg_hr} bpm</> : '—'}</span></>
                   ) : <span className="v" style={{ color: 'var(--faint)' }}>—</span>}
                 </div>
-                <span className={`pill ${s.status}`}>{s.status}</span>
+                <span className={`pill ${s.status}`}>{s.status}{s.moved ? ' ·moved' : ''}</span>
               </div>
             ))}
           </div>
@@ -785,7 +785,7 @@ export default function App() {
               <tbody>
                 {recentDone.map((s) => (
                   <tr key={s.id}>
-                    <td className="num">{DAY_MONTH(s.date)}</td>
+                    <td className="num">{DAY_MONTH(s.date)}{s.moved ? <span style={{ color: 'var(--under)', fontSize: 11 }}> ·moved {s.dayDelta > 0 ? '+' : ''}{s.dayDelta}d</span> : null}</td>
                     <td><span style={{ color: 'var(--faint)' }}>{s.week_short}</span> · {s.type}</td>
                     <td className="num">{s.distance_km} km</td>
                     <td className="num">{s.actual.distance_km} km</td>

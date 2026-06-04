@@ -56,17 +56,64 @@ function hrVerdict(target, actualHr) {
   return 'in';
 }
 
+const MOVE_WINDOW_DAYS = 3; // a planned run can be satisfied by a run up to this many days off
+
 export function buildSessions(plan, activities, todayISO) {
+  const runs = (activities || []).filter((a) => a.type === 'Run').map((a) => ({ ...a, _claimed: false }));
   const runsByDate = {};
-  for (const a of activities) if (a.type === 'Run') (runsByDate[a.date] ||= []).push(a);
+  for (const a of runs) (runsByDate[a.date] ||= []).push(a);
+  const plannedRuns = plan.filter((p) => p.is_run);
+
+  const matched = {}; // session id -> { acts, moved, dayDelta }
+
+  // Pass 1: exact-date match. Claim every run that lands on a planned run day.
+  for (const p of plannedRuns) {
+    const acts = runsByDate[p.date];
+    if (acts && acts.length) {
+      acts.forEach((a) => { a._claimed = true; });
+      matched[p.id] = { acts, moved: false, dayDelta: 0 };
+    }
+  }
+
+  // Pass 2: any still-unfilled planned run claims the nearest UNCLAIMED run
+  // within the window — that's a session you shifted by a day or two.
+  const dateRange = (id, fallbackDate) => {
+    // keep moved matches inside the planned run's own week span
+    const p = plan.find((x) => x.id === id) || { date: fallbackDate, seq: null };
+    return p.seq;
+  };
+  for (const p of plannedRuns) {
+    if (matched[p.id]) continue;
+    let best = null;
+    for (const a of runs) {
+      if (a._claimed) continue;
+      const delta = Math.round((new Date(a.date) - new Date(p.date)) / 86400000);
+      if (Math.abs(delta) > MOVE_WINDOW_DAYS) continue;
+      // don't let it claim a run that sits exactly on ANOTHER planned run's day
+      if (runsByDate[a.date] && plannedRuns.some((q) => q.id !== p.id && q.date === a.date)) continue;
+      if (best == null || Math.abs(delta) < Math.abs(best.delta)) best = { a, delta };
+    }
+    if (best) {
+      best.a._claimed = true;
+      matched[p.id] = { acts: [best.a], moved: true, dayDelta: best.delta };
+    }
+  }
+
   return plan.map((p) => {
-    const acts = p.is_run ? runsByDate[p.date] : null;
-    const actual = acts && acts.length ? aggregateRuns(acts) : null;
+    const m = p.is_run ? matched[p.id] : null;
+    const actual = m ? aggregateRuns(m.acts) : null;
     const past = p.date < todayISO;
     let status = !p.is_run ? 'support' : actual ? 'done' : past ? 'missed' : 'upcoming';
     const hr = actual ? hrVerdict(p.hr_target, actual.avg_hr) : null;
-    return { ...p, actual, status, hr };
+    return { ...p, actual, status, hr, moved: m ? m.moved : false, dayDelta: m ? m.dayDelta : 0, matchedIds: m ? m.acts.map((a) => a.id) : [] };
   });
+}
+
+// Set of activity IDs that filled a planned session (exact or moved).
+export function matchedRunIds(sessions) {
+  const set = new Set();
+  for (const s of sessions) for (const id of s.matchedIds || []) set.add(id);
+  return set;
 }
 
 function weekSpans(plan) {
@@ -227,7 +274,7 @@ export function crossTrainTotals(activities) {
 
 // Full chronological activity log, newest first, with planned/extra tagging for runs.
 export function activityLog(sessions, activities, limit = 40) {
-  const plannedRunDates = new Set(sessions.filter((s) => s.is_run).map((s) => s.date));
+  const matched = matchedRunIds(sessions);
   return (activities || [])
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id)
@@ -239,16 +286,16 @@ export function activityLog(sessions, activities, limit = 40) {
         id: a.id, date: a.date, group: g, name: a.name,
         distance_km: a.distance_km, moving_time_s: a.moving_time_s,
         pace_sec_per_km: a.pace_sec_per_km, avg_hr: a.avg_hr,
-        tag: isRun ? (plannedRunDates.has(a.date) ? 'planned' : 'extra') : null,
+        tag: isRun ? (matched.has(a.id) ? 'planned' : 'extra') : null,
       };
     });
 }
 
 // Unplanned ("extra") runs: runs on dates with no scheduled run session.
 export function extraRuns(sessions, activities) {
-  const plannedRunDates = new Set(sessions.filter((s) => s.is_run).map((s) => s.date));
+  const matched = matchedRunIds(sessions);
   return (activities || [])
-    .filter((a) => groupType(a.type) === 'Run' && !plannedRunDates.has(a.date))
+    .filter((a) => groupType(a.type) === 'Run' && !matched.has(a.id))
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
